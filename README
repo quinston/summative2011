@@ -1,0 +1,9 @@
+* Make a branch before making a feature (git branch branchname)
+* If the feature works, ask partner to check before merging to master (git checkout master && git merge branchname)
+* Commit everytime something works (git commit -m "message")
+* Always push to branchname (git push origin branchname) 
+*** If you didn't call the remote repository origin, replace "origin" with what you called it, note that it's custom to call it "origin"
+* Change to branchname: (git checkout branchname)
+* Get the current copy and wipe out your own copy: (git pull branchname)
+
+
