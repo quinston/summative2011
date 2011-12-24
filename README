@@ -7,3 +7,4 @@
 * Get the current copy and wipe out your own copy: (git pull branchname)
 
 
+* ALWAYS git pull before beginning work, so that your files are up-to-date.
