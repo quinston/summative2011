@@ -13,9 +13,10 @@ public class Main {
     /**
      * @param args the command line arguments
      */
-    
+
+    public static GameFrame frame = new GameFrame();     
     public static Camera camera = new Camera();
-    public static GameFrame frame = new GameFrame();
+
     
     public static void main(String[] args) {
         frame.setVisible(true);
