@@ -8,3 +8,11 @@
 
 
 * ALWAYS git pull before beginning work, so that your files are up-to-date.
+
+OK, I did some thought.  Here's my idea on the classes:
+
+interface Damageable: takeDamage(int), die()
+class Alien implements Damageable: move(), fire()
+class Saucer extends Alien implements Damageable: move(), fire() /*never used, or empty*/
+class Ship implements Damageable: moveLeft(), moveRight(), fire()
+class Shield implements Damageable: /* automatically die() */
