@@ -35,6 +35,10 @@ public class Ship implements Damageable {
 		upperCorner.x += speed;
 		lowerCorner.x += speed;
 	}
+	
+	public void boolean checkCollision(Point3D topLeft, Point3D topRight) {
+	
+	}
 
 	private int hp;
 	private final int speed = 5;
