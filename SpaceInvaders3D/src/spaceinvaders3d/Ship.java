@@ -21,6 +21,21 @@ public class Ship implements Damageable {
 	public int getHP() {
 		return hp;
 	}
+	
+	public void shoot() {
+	
+	}
+	
+	public void moveLeft() {
+		upperCorner.x -= speed;
+		lowerCorner.x -= speed;
+	}
+	
+	public void moveRight() {
+		upperCorner.x += speed;
+		lowerCorner.x += speed;
+	}
 
 	private int hp;
+	private final int speed = 5;
 }
