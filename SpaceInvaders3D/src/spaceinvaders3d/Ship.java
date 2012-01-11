@@ -37,7 +37,17 @@ public class Ship implements Damageable {
 	}
 	
 	public void boolean checkCollision(Point3D topLeft, Point3D topRight) {
-	
+		if((lowerCorner.x>=topLeft.x)
+				&&(upperCorner.x<=botRight.x)
+				&&(lowerCorner.y>=topLeft.y)
+				&&(upperCorner.y<=botRight.y)
+				&&(upperCorner.z>=botRight.z)
+				&&(lowerCorner.z<=topLeft.z))
+			return true;
+		}
+		else{
+			return false;
+		}
 	}
 
 	private int hp;
