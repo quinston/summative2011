@@ -1,11 +1,13 @@
 // The "Bullets" class.
 import java.awt.*;
 
-public class Bullets implements damageable: 
+import spaceinvaders3d.Damageable;
+
+public class Bullet implements Damageable: 
 {
 	Point3d upperCorner, lowerCorner, direction;
 	
-	public Bullets(Point3d UpperCorner, Point3d LowerCorner, Point3d, movementDirection){
+	public Bullet(Point3d UpperCorner, Point3d LowerCorner, Point3d movementDirection){
 		upperCorner = UpperCorner;
 		lowerCorner = LowerCorner;
 		direction = movementDirection;
@@ -31,4 +33,5 @@ public class Bullets implements damageable:
 			return false;
 		}
 	}
-} // Bullets class
+	public Damageable owner;
+} 
