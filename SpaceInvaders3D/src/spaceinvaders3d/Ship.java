@@ -1,16 +1,17 @@
 package spaceinvaders3d;
 
 import spaceinvaders3d.Damageable;
-import spaceinvaders3d.Point3D;
+import spaceinvaders3d.Point3d;
+import spaceinvaders3d.Bullet;
 
 public class Ship implements Damageable {
 
-	private Point3D upperCorner, lowerCorner;
+	private Point3d upperCorner, lowerCorner;
 	
-	public Point3D getUpperCorner() {
+	public Point3d getUpperCorner() {
 		return upperCorner;
 	}
-	public Point3D getLowerCorner() {
+	public Point3d getLowerCorner() {
 		return lowerCorner;
 	}
 
@@ -23,7 +24,8 @@ public class Ship implements Damageable {
 	}
 	
 	public void shoot() {
-	
+		Bullet b = new Bullet(upperCorner, lowerCorner, new Point3d(0,-90,0) );
+		b.owner = this;
 	}
 	
 	public void moveLeft() {
@@ -36,7 +38,7 @@ public class Ship implements Damageable {
 		lowerCorner.x += speed;
 	}
 	
-	public void boolean checkCollision(Point3D topLeft, Point3D topRight) {
+	public void boolean checkCollision(Point3d topLeft, Point3d topRight) {
 		if((lowerCorner.x>=topLeft.x)
 				&&(upperCorner.x<=botRight.x)
 				&&(lowerCorner.y>=topLeft.y)
