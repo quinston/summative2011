@@ -6,6 +6,8 @@ import spaceinvaders3d.Damageable;
 public class Bullet implements Damageable: 
 {
 	Point3d upperCorner, lowerCorner, direction;
+
+	public Damageable owner;	
 	
 	public Bullet(Point3d UpperCorner, Point3d LowerCorner, Point3d movementDirection){
 		upperCorner = UpperCorner;
@@ -33,5 +35,14 @@ public class Bullet implements Damageable:
 			return false;
 		}
 	}
-	public Damageable owner;
+	
+	public boolean onCollision(Damageable d) {
+		if (d == owner) {
+			return false;
+		}
+		else {
+		
+		}
+	}
+	
 } 
