@@ -13,6 +13,7 @@ public class Bullet implements Damageable:
 		upperCorner = UpperCorner;
 		lowerCorner = LowerCorner;
 		direction = movementDirection;
+		hp = 1;
 	}
 	public void move(){
 		upperCorner.x+=direction.x;
@@ -41,8 +42,20 @@ public class Bullet implements Damageable:
 			return false;
 		}
 		else {
-		
+			if (checkCollision(d.getUpperCorner(), d.getLowerCorner)) {
+				d.takeDamage(1);
+				
+			}
 		}
 	}
+	
+	public void takeDamage(int n) {
+		hp -= n;
+	}
+    public int getHP() {
+		return hp;
+	}
+	
+	private int hp;
 	
 } 
