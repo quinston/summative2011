@@ -4,6 +4,8 @@
  */
 package spaceinvaders3d;
 
+import spaceinvaders3d.Point3D;
+
 /**
  *
  * @author quincy
@@ -11,4 +13,7 @@ package spaceinvaders3d;
 public interface Damageable {
     void takeDamage(int n);
     int getHP();
+    
+    Point3D getUpperCorner();
+    Point3D getLowerCorner();
 }

@@ -1,30 +1,39 @@
 package spaceinvaders3d;
 
 import spaceinvaders3d.Damageable;
-import spaceinvaders3d.Point3d;
+import spaceinvaders3d.Point3D;
 import spaceinvaders3d.Bullet;
 
 public class Ship implements Damageable {
 
-	private Point3d upperCorner, lowerCorner;
+	private Point3D upperCorner, lowerCorner;
 	
-	public Point3d getUpperCorner() {
+        @Override
+	public Point3D getUpperCorner() {
 		return upperCorner;
 	}
-	public Point3d getLowerCorner() {
+        
+        @Override
+	public Point3D getLowerCorner() {
 		return lowerCorner;
 	}
 
-	public Ship();
+	public Ship() {
+            
+        }
+        
+        @Override
 	public void takeDamage(int n) {
 		hp -= n;
 	}
+        
+        @Override
 	public int getHP() {
 		return hp;
 	}
 	
 	public void shoot() {
-		Bullet b = new Bullet(upperCorner, lowerCorner, new Point3d(0,-90,0) );
+		Bullet b = new Bullet(upperCorner, lowerCorner, new Point3D(0,-90,0) );
 		b.owner = this;
 	}
 	
@@ -38,13 +47,13 @@ public class Ship implements Damageable {
 		lowerCorner.x += speed;
 	}
 	
-	public void boolean checkCollision(Point3d topLeft, Point3d topRight) {
+	public boolean checkCollision(Point3D topLeft, Point3D botRight) {
 		if((lowerCorner.x>=topLeft.x)
 				&&(upperCorner.x<=botRight.x)
 				&&(lowerCorner.y>=topLeft.y)
 				&&(upperCorner.y<=botRight.y)
 				&&(upperCorner.z>=botRight.z)
-				&&(lowerCorner.z<=topLeft.z))
+				&&(lowerCorner.z<=topLeft.z)) {
 			return true;
 		}
 		else{
