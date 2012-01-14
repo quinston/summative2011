@@ -5,6 +5,7 @@
 package spaceinvaders3d;
 
 import spaceinvaders3d.Point3D;
+import java.awt.Graphics;
 
 /**
  *
@@ -16,4 +17,6 @@ public interface Damageable {
     
     Point3D getUpperCorner();
     Point3D getLowerCorner();
+    
+    void paintSelf(Graphics g);
 }
