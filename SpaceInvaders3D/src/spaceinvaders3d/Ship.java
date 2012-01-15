@@ -4,6 +4,8 @@ import spaceinvaders3d.Damageable;
 import spaceinvaders3d.Point3D;
 import spaceinvaders3d.Bullet;
 
+import java.awt.Graphics2D;
+
 public class Ship implements Damageable {
 
 	private Point3D upperCorner, lowerCorner;
@@ -31,6 +33,11 @@ public class Ship implements Damageable {
 	public int getHP() {
 		return hp;
 	}
+        
+        @Override
+        public void paintSelf(Graphics2D g) {
+            
+        }
 	
 	public void shoot() {
 		Bullet b = new Bullet(upperCorner, lowerCorner, new Point3D(0,-90,0) );

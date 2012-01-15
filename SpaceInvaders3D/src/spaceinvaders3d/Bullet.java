@@ -5,6 +5,7 @@ import java.awt.*;
 
 import spaceinvaders3d.Damageable;
 import spaceinvaders3d.Point3D;
+import java.awt.Graphics2D;
 
 public class Bullet implements Damageable {
 
@@ -70,5 +71,11 @@ public class Bullet implements Damageable {
     public Point3D getUpperCorner() {
         return upperCorner;
     }
+    
+    @Override
+    public void paintSelf(Graphics2D g) {
+        
+    }
+    
     private int hp;
 }
