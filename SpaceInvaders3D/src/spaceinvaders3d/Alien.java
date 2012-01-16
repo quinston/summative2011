@@ -3,9 +3,20 @@ package spaceinvaders3d;
 import spaceinvaders3d.Damageable;
 import spaceinvaders3d.Point3D;
 import spaceinvaders3d.Bullet;
+import spaceinvaders3d.Utility;
 import java.awt.Graphics2D;
+import java.awt.Image;
+
 
 public class Alien implements Damageable {
+
+	public static BufferedImage sprite = Utility.loadImage("alien1-1.png");
+	
+	public Alien(Point3D uc, Point3D lc) {
+		upperCorner = uc;
+		lowerCorner = lc;
+		hp = 5999;
+	}
 
     @Override
     public void takeDamage(int n) {
@@ -19,6 +30,12 @@ public class Alien implements Damageable {
 
     @Override
     public void paintSelf(Graphics2D g) {
+		Point2D upperCorner2D = upperCorner.convertTo2D();
+		Point2D lowerCorner2D = lowerCoerner.convertTo2D();
+		Point2D width = Point2D(lowerCorner2D.getX() - upperCorner2D.getX(),
+				lowerCorner2D.getY() - upperCorner2D.getY());
+		g.drawImage(sprite, upperCorner2D.getX(), upperCorner2D.getY(),
+				width.getX(), width.getY(), null);
     }
 
     public void shoot() {

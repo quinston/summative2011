@@ -93,6 +93,8 @@ public class GameFrame extends javax.swing.JFrame {
 
             public void run() {
                 new GameFrame().setVisible(true);
+				
+				new Alien();
             }
         });
     }
