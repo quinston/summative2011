@@ -7,6 +7,7 @@ import spaceinvaders3d.Utility;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.Point;
+import java.awt.Color;
 import java.awt.image.BufferedImage;
 
 public class Alien implements Damageable {
@@ -32,10 +33,15 @@ public class Alien implements Damageable {
     public void paintSelf(Graphics2D g) {
 		Point upperCorner2D = upperCorner.convertTo2D();
 		Point lowerCorner2D = lowerCorner.convertTo2D();
-		Point width = new Point((int) (lowerCorner2D.getX() - upperCorner2D.getX()),
+		Point size = new Point((int) (lowerCorner2D.getX() - upperCorner2D.getX()),
 				(int) (lowerCorner2D.getY() - upperCorner2D.getY()) );
 		g.drawImage(sprite, (int) upperCorner2D.getX(), (int) upperCorner2D.getY(),
-				(int) width.getX(), (int) width.getY(), null);
+				(int) size.getX(), (int) size.getY(), null);
+        g.setColor(Color.red);
+        g.fillRect((int) upperCorner2D.getX(), (int) upperCorner2D.getY(),
+				(int) size.getX(), (int) size.getY());
+        g.drawString("" + upperCorner2D.getX() + " " + upperCorner2D.getY()
+                + " " + size.getX() + " " + size.getY(), 10, 10 );
     }
 
     public void shoot() {
