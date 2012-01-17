@@ -68,6 +68,6 @@ public class Ship implements Damageable {
 		}
 	}
 
-	private int hp;
+	private int hp = 3;
 	private final int speed = 5;
 }

@@ -1,8 +1,12 @@
+
+package spaceinvaders3d;
+
 import javax.imageio.ImageIO;
 import java.io.File;
-import java.awt.BufferedImage;
+import java.awt.image.BufferedImage;
 
-public static class Utility {
+
+public class Utility {
 	public static BufferedImage loadImage(String filename) {
 		try {
 			return ImageIO.read(new File("filename"));
@@ -10,5 +14,6 @@ public static class Utility {
 		catch(Exception e) {
 			
 		}
+		return null;
 	}
 }

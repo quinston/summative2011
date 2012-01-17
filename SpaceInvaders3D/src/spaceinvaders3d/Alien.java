@@ -6,7 +6,8 @@ import spaceinvaders3d.Bullet;
 import spaceinvaders3d.Utility;
 import java.awt.Graphics2D;
 import java.awt.Image;
-
+import java.awt.Point;
+import java.awt.image.BufferedImage;
 
 public class Alien implements Damageable {
 
@@ -15,7 +16,6 @@ public class Alien implements Damageable {
 	public Alien(Point3D uc, Point3D lc) {
 		upperCorner = uc;
 		lowerCorner = lc;
-		hp = 5999;
 	}
 
     @Override
@@ -30,12 +30,12 @@ public class Alien implements Damageable {
 
     @Override
     public void paintSelf(Graphics2D g) {
-		Point2D upperCorner2D = upperCorner.convertTo2D();
-		Point2D lowerCorner2D = lowerCoerner.convertTo2D();
-		Point2D width = Point2D(lowerCorner2D.getX() - upperCorner2D.getX(),
-				lowerCorner2D.getY() - upperCorner2D.getY());
-		g.drawImage(sprite, upperCorner2D.getX(), upperCorner2D.getY(),
-				width.getX(), width.getY(), null);
+		Point upperCorner2D = upperCorner.convertTo2D();
+		Point lowerCorner2D = lowerCorner.convertTo2D();
+		Point width = new Point((int) (lowerCorner2D.getX() - upperCorner2D.getX()),
+				(int) (lowerCorner2D.getY() - upperCorner2D.getY()) );
+		g.drawImage(sprite, (int) upperCorner2D.getX(), (int) upperCorner2D.getY(),
+				(int) width.getX(), (int) width.getY(), null);
     }
 
     public void shoot() {
@@ -57,6 +57,6 @@ public class Alien implements Damageable {
     public Point3D getLowerCorner() {
         return lowerCorner;
     }
-    private int hp;
+    private int hp = 1;
     private Point3D upperCorner, lowerCorner;
 }

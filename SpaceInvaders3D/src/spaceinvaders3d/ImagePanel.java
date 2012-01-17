@@ -17,6 +17,10 @@ package spaceinvaders3d;
 
 import java.awt.*;
 import java.beans.Beans;
+
+import java.util.ArrayList;
+import java.util.ListIterator;
+
 public class ImagePanel extends javax.swing.JPanel {
 
     /** Creates new form ImagePanel */
@@ -28,11 +32,10 @@ public class ImagePanel extends javax.swing.JPanel {
         super.paintComponent(g); //paint background
         if(!Beans.isDesignTime())
         {
-            g.setColor(Color.WHITE);
-            g.drawRect(100, 100, 100, 100);
-            g.drawRect(0,0,180,199);
-            g.fillOval(20, 20, 50, 90);
-            
+			for (ListIterator<spaceinvaders3d.Damageable> i = Main.damageables.listIterator(); i.hasNext(); ) {
+				Damageable d = i.next();
+				d.paintSelf((Graphics2D) g);
+			}
         }
    }
     /** This method is called from within the constructor to
