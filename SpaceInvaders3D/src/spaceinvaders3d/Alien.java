@@ -38,10 +38,10 @@ public class Alien implements Damageable {
 		g.drawImage(sprite, (int) upperCorner2D.getX(), (int) upperCorner2D.getY(),
 				(int) size.getX(), (int) size.getY(), null);
         g.setColor(Color.red);
-        g.fillRect((int) upperCorner2D.getX(), (int) upperCorner2D.getY(),
-				(int) size.getX(), (int) size.getY());
+        //g.fillRect((int) upperCorner2D.getX(), (int) upperCorner2D.getY(),
+		//		(int) size.getX(), (int) size.getY());
         g.drawString("" + upperCorner2D.getX() + " " + upperCorner2D.getY()
-                + " " + size.getX() + " " + size.getY(), 10, 10 );
+        		+ " " + size.getX() + " " + size.getY(), 10, 10 );
     }
 
     public void shoot() {

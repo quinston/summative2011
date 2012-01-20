@@ -32,6 +32,6 @@ public class Main {
         // TODO code application logic here
 
 						
-	damageables.add(new spaceinvaders3d.Alien(new Point3D(2,2,8), new Point3D(3,2,6)));
+		damageables.add(new spaceinvaders3d.Alien(new Point3D(0,0,-130), new Point3D(02,02,-130)));
     }
 }
