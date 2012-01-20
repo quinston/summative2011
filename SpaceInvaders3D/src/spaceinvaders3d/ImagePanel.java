@@ -32,9 +32,9 @@ public class ImagePanel extends javax.swing.JPanel {
         super.paintComponent(g); //paint background
         if(!Beans.isDesignTime())
         {
-		for (spaceinvaders3d.Damageable d : Main.damageables ) {
-			d.paintSelf((Graphics2D) g);
-		}
+			for (spaceinvaders3d.Damageable d : Main.damageables ) {
+				d.paintSelf((Graphics2D) g);
+			}
         }
    }
     /** This method is called from within the constructor to

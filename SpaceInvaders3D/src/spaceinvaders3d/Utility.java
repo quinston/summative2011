@@ -12,7 +12,7 @@ public class Utility {
 			return ImageIO.read(new File("filename"));
 		}
 		catch(Exception e) {
-			
+			System.out.println(e.toString());
 		}
 		return null;
 	}

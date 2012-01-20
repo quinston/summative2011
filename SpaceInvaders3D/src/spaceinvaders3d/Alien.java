@@ -12,7 +12,7 @@ import java.awt.image.BufferedImage;
 
 public class Alien implements Damageable {
 
-	public static BufferedImage sprite = Utility.loadImage("alien1-1.png");
+	public static BufferedImage sprite = Utility.loadImage("spaceinvaders3d/alien1-1.gif");
 	
 	public Alien(Point3D uc, Point3D lc) {
 		upperCorner = uc;
