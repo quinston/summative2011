@@ -9,7 +9,7 @@ import java.awt.image.BufferedImage;
 public class Utility {
 	public static BufferedImage loadImage(String filename) {
 		try {
-			return ImageIO.read(new File("filename"));
+			return ImageIO.read(new File(filename));
 		}
 		catch(Exception e) {
 			System.out.println(e.toString());
