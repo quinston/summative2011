@@ -50,11 +50,14 @@ public class Alien implements Damageable {
 		Point size = new Point((int) (lowerCorner2D.getX() - upperCorner2D.getX()),
 				(int) (lowerCorner2D.getY() - upperCorner2D.getY()) );
 
-		/**
-			TO BE IMPLEMENTED: CHECKING SOME TIMEKEEPING THING TO SEE WHETHER TO CHANGE SPRITES OR NOT.
-		**/
-
-		BufferedImage sprite = alienSprites[species][0];
+		BufferedImage sprite;
+		
+		if (System.currentTimeMillis() / spriteChangeDelay % 2 == 1) {
+			sprite = alienSprites[species][0];
+		}
+		else {
+			sprite = alienSprites[species][1];	
+		}
 
 		g.drawImage(sprite, (int) upperCorner2D.getX(), (int) upperCorner2D.getY(),
 				(int) size.getX(), (int) size.getY(), null);
@@ -88,4 +91,6 @@ public class Alien implements Damageable {
     private Point3D upperCorner, lowerCorner;
 
 	private int species; // Type 1 has alienSprite1a, b; Type 2 has alienSprite2a etc.
+	
+	private final int spriteChangeDelay = 150;
 }

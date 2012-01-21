@@ -20,19 +20,29 @@ import java.beans.Beans;
 
 import java.util.ArrayList;
 import java.util.ListIterator;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class ImagePanel extends javax.swing.JPanel {
 
     /** Creates new form ImagePanel */
     public ImagePanel() {
         initComponents();
+        new Timer().schedule(new ImagePanel.RepaintTask(), 0, 33); //begin immediately and periodically 33ms i.e. 30fps
     }
+    
+    private class RepaintTask extends TimerTask {
+    	public void run() {
+    		repaint(getBounds(null));
+    	}
+    }
+    
    @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g); //paint background
         if(!Beans.isDesignTime())
         {
-			for (spaceinvaders3d.Damageable d : Main.damageables ) {
+ 			for (spaceinvaders3d.Damageable d : Main.damageables ) {
 				d.paintSelf((Graphics2D) g);
 			}
         }
