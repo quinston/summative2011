@@ -18,5 +18,6 @@ public interface Damageable {
     Point3D getUpperCorner();
     Point3D getLowerCorner();
     
-    void paintSelf(Graphics2D g);
+    void paintSelf(Graphics2D g); //30 fps
+	void cycle(int cycleNumber); //60 fps (roughly)
 }

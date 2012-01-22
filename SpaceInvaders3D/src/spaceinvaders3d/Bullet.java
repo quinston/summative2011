@@ -76,6 +76,11 @@ public class Bullet implements Damageable {
     public void paintSelf(Graphics2D g) {
         
     }
+	
+	@Override
+	public void cycle(int cycleNumber) {
+		
+	}
     
     private int hp;
 }

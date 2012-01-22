@@ -9,65 +9,66 @@ import java.awt.Graphics2D;
 public class Ship implements Damageable {
 
 	private Point3D upperCorner, lowerCorner;
-	
-        @Override
+
+	@Override
 	public Point3D getUpperCorner() {
 		return upperCorner;
 	}
-        
-        @Override
+
+	@Override
 	public Point3D getLowerCorner() {
 		return lowerCorner;
 	}
 
 	public Ship() {
-            
-        }
-        
-        @Override
+	}
+
+	@Override
 	public void takeDamage(int n) {
 		hp -= n;
 	}
-        
-        @Override
+
+	@Override
 	public int getHP() {
 		return hp;
 	}
-        
-        @Override
-        public void paintSelf(Graphics2D g) {
-            
-        }
-	
-	public void shoot() {
-		Bullet b = new Bullet(upperCorner, lowerCorner, new Point3D(0,-90,0) );
-		b.owner = this;
+
+	@Override
+	public void paintSelf(Graphics2D g) {
 	}
 	
+	@Override
+	public void cycle(int cycleNomber) {
+		
+	}	
+
+	public void shoot() {
+		Bullet b = new Bullet(upperCorner, lowerCorner, new Point3D(0, -90, 0));
+		b.owner = this;
+	}
+
 	public void moveLeft() {
 		upperCorner.x -= speed;
 		lowerCorner.x -= speed;
 	}
-	
+
 	public void moveRight() {
 		upperCorner.x += speed;
 		lowerCorner.x += speed;
 	}
-	
+
 	public boolean checkCollision(Point3D topLeft, Point3D botRight) {
-		if((lowerCorner.x>=topLeft.x)
-				&&(upperCorner.x<=botRight.x)
-				&&(lowerCorner.y>=topLeft.y)
-				&&(upperCorner.y<=botRight.y)
-				&&(upperCorner.z>=botRight.z)
-				&&(lowerCorner.z<=topLeft.z)) {
+		if ((lowerCorner.x >= topLeft.x)
+				&& (upperCorner.x <= botRight.x)
+				&& (lowerCorner.y >= topLeft.y)
+				&& (upperCorner.y <= botRight.y)
+				&& (upperCorner.z >= botRight.z)
+				&& (lowerCorner.z <= topLeft.z)) {
 			return true;
-		}
-		else{
+		} else {
 			return false;
 		}
 	}
-
 	private int hp = 3;
 	private final int speed = 5;
 }

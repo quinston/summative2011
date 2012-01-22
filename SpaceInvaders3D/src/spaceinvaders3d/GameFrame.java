@@ -94,7 +94,7 @@ public class GameFrame extends javax.swing.JFrame {
             public void run() {
                 new GameFrame().setVisible(true);
 
-				spaceinvaders3d.Main.main(new String[0]);
+				//spaceinvaders3d.Main.main(new String[0]);
             }
         });
     }

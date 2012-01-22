@@ -33,7 +33,7 @@ public class Main {
 
 						
 		damageables.add(new spaceinvaders3d.Alien(new Point3D(0,0,-130), new Point3D(5,5,-130), 0 ) );
-		damageables.add(new spaceinvaders3d.Alien(new Point3D(-5,-5,-30), new Point3D(0,0,-30), 1) );
-		damageables.add(new spaceinvaders3d.Alien(new Point3D(10,10,70), new Point3D(15,15,70), 2) );
+		damageables.add(new spaceinvaders3d.Alien(new Point3D(-5,-5,-120), new Point3D(0,0,-120), 1) );
+		damageables.add(new spaceinvaders3d.Alien(new Point3D(10,10,-110), new Point3D(15,15,-110), 2) );
     }
 }
