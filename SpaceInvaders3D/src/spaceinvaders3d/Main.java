@@ -6,6 +6,8 @@ package spaceinvaders3d;
 
 import java.util.ArrayList;
 import java.util.ListIterator;
+import javax.swing.Timer;
+import java.awt.event.*;
 
 
 /**
@@ -30,7 +32,18 @@ public class Main {
         camera.position.y = 0;
         camera.position.z = 0;
         // TODO code application logic here
-
+        ActionListener taskPerformer = new ActionListener ()
+        {
+            public void actionPerformed (ActionEvent evt)
+            {
+                //for(all damageables){
+                
+                //}
+            }
+        }
+        ;
+        Timer t = new Timer (50, taskPerformer);
+        t.start ();
 						
 		damageables.add(new spaceinvaders3d.Alien(new Point3D(0,0,-130), new Point3D(5,5,-130), 0 ) );
 		damageables.add(new spaceinvaders3d.Alien(new Point3D(-5,-5,-30), new Point3D(0,0,-30), 1) );
