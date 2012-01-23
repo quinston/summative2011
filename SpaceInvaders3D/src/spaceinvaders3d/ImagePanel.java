@@ -45,12 +45,15 @@ public class ImagePanel extends javax.swing.JPanel{
 		@Override
 		public void run() {
 			for (spaceinvaders3d.Damageable d : Main.damageables) {
+                            if(d.getHP()>0){
 				d.cycle(new GregorianCalendar()
 						.get(GregorianCalendar.MILLISECOND) / 17);
-			}			
+                            }
+			}
+                        
 		}
 	}
-
+        
 	@Override
 	public void paintComponent(Graphics g) {
 
@@ -63,7 +66,9 @@ public class ImagePanel extends javax.swing.JPanel{
 		super.paintComponent(g0); //paint background
 		if(!Beans.isDesignTime()) {
 			for (spaceinvaders3d.Damageable d : Main.damageables) {
-				d.paintSelf((Graphics2D) g0);
+			    if(d.getHP()>0){
+                                d.paintSelf((Graphics2D) g0);
+                            }
 			}
 		}
 		

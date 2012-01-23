@@ -6,12 +6,13 @@ import java.awt.*;
 import spaceinvaders3d.Damageable;
 import spaceinvaders3d.Point3D;
 import java.awt.Graphics2D;
+import java.awt.image.BufferedImage;
 
 public class Bullet implements Damageable {
 
     Point3D upperCorner, lowerCorner, direction;
     public Damageable owner;
-
+    BufferedImage self = Utility.loadImage("downFacingBullet.png");
     public Bullet(Point3D UpperCorner, Point3D LowerCorner, Point3D movementDirection) {
         upperCorner = UpperCorner;
         lowerCorner = LowerCorner;
@@ -28,13 +29,13 @@ public class Bullet implements Damageable {
         lowerCorner.z += direction.z;
     }
 
-    public boolean checkCollision(Point3D topLeft, Point3D botRight) {
-        if ((lowerCorner.x >= topLeft.x)
-                && (upperCorner.x <= botRight.x)
-                && (lowerCorner.y >= topLeft.y)
-                && (upperCorner.y <= botRight.y)
-                && (upperCorner.z >= botRight.z)
-                && (lowerCorner.z <= topLeft.z)) {
+    public boolean checkCollision(Damageable d) {
+        if ((lowerCorner.x >= d.getUpperCorner().x)
+                && (upperCorner.x <= d.getLowerCorner().x)
+                && (lowerCorner.y >= d.getUpperCorner().y)
+                && (upperCorner.y <= d.getLowerCorner().y)
+                && (upperCorner.z >= d.getLowerCorner().z)
+                && (lowerCorner.z <= d.getUpperCorner().z)) {
             return true;
         } else {
             return false;
@@ -45,8 +46,9 @@ public class Bullet implements Damageable {
         if (d == owner) {
             return;
         } else {
-            if (checkCollision(d.getUpperCorner(), d.getLowerCorner())) {
+            if (checkCollision(d)) {
                 d.takeDamage(1);
+                System.out.println("HIT");
 
             }
         }
@@ -74,12 +76,23 @@ public class Bullet implements Damageable {
     
     @Override
     public void paintSelf(Graphics2D g) {
-        
+        Point upperCorner2d = this.upperCorner.convertTo2D();
+        Point lowerCorner2d = this.lowerCorner.convertTo2D();
+        g.drawString(upperCorner2d.x +", "+upperCorner2d.y, 150, 150);
+        g.drawImage(self, upperCorner2d.x,upperCorner2d.y, lowerCorner2d.x-upperCorner2d.x, lowerCorner2d.y-upperCorner2d.y, null);
+        g.setColor(Color.BLACK);
+        g.drawString(""+upperCorner.x+", "+upperCorner.y+", "+upperCorner.z, 100, 100);
+        g.drawString(""+lowerCorner.x+", "+lowerCorner.y+", "+lowerCorner.z, 100, 120);
+        System.out.println("Bullet Drawn");
     }
 	
 	@Override
 	public void cycle(int cycleNumber) {
-		
+		move();
+                for (spaceinvaders3d.Damageable d : Main.damageables) {
+                    onCollision(d);
+                }
+                
 	}
     
     private int hp;

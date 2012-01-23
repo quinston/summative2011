@@ -45,8 +45,11 @@ public class Ship implements Damageable {
 	}	
 
 	public void shoot() {
-		Bullet b = new Bullet(upperCorner, lowerCorner, new Point3D(0, -90, 0));
+		Bullet b = new Bullet(upperCorner, lowerCorner, new Point3D(0, 0, (float) - 0.05));
+                System.out.println(upperCorner.x+", "+upperCorner.y+", "+upperCorner.z);
+                System.out.println(lowerCorner.x+", "+lowerCorner.y+", "+lowerCorner.z);
 		b.owner = this;
+                Main.damageables.add(b);
 	}
 
 	public void moveLeft() {

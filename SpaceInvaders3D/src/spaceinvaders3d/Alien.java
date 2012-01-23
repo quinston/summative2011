@@ -62,8 +62,9 @@ public class Alien implements Damageable {
 		g.drawImage(sprite, (int) upperCorner2D.getX(), (int) upperCorner2D.getY(),
 				(int) size.getX(), (int) size.getY(), null);
 		g.setColor(Color.red);
-		g.drawString("" + upperCorner2D.getX() + " " + upperCorner2D.getY()
-				+ " " + size.getX() + " " + size.getY(), 10, upperCorner2D.y );
+                g.drawString(upperCorner.x+", "+upperCorner.y+", "+ upperCorner.z, 100, 100+species*10);
+		//g.drawString("" + upperCorner2D.getX() + " " + upperCorner2D.getY()
+				//+ " " + size.getX() + " " + size.getY(), 10, upperCorner2D.y );
 	}
 	
 	@Override
@@ -73,25 +74,29 @@ public class Alien implements Damageable {
 
 	public void shoot() {
 		Bullet b = new Bullet(upperCorner, lowerCorner,
-				new Point3D(0, 90, 0));
+				new Point3D(0, (float)0.5, 0));
 		b.owner = this;
+                Main.damageables.add(b);
 	}
 
 	public void move(int cycleNumber) {
-		//Input to sine called x for lack of better name
+		/*//Input to sine called x for lack of better name
 		double x = cycleNumber / 30.0 * Math.PI ;
 		
 		//stuff to slow it down.
 		
 		upperCorner.x = initialUpperCorner.x 
-				+ Math.round(0.1 * Math.sin(x));
-		upperCorner.y += Math.round(0.01 * Math.sin(x));
-		upperCorner.z += Math.round(0.01 * Math.sin(x));	
+				+ Math.round(0.5 * Math.sin(x));
+		upperCorner.y += Math.round(0.5 * Math.sin(x));
+		upperCorner.z += Math.round(0.5 * Math.sin(x));	
 		
 		lowerCorner.x = initialLowerCorner.x 
-				+ Math.round(0.1 * Math.sin(x));
-		lowerCorner.y += Math.round(0.01 * Math.sin(x));		
-		lowerCorner.z += Math.round(0.01 * Math.sin(x));		
+				+ Math.round(0.5 * Math.sin(x));
+		lowerCorner.y += Math.round(0.5 * Math.sin(x));		
+		lowerCorner.z += Math.round(0.5 * Math.sin(x));*/
+                this.upperCorner.z+=0.05;
+                this.lowerCorner.z+=0.05;
+                System.out.println("Moved");
 	}
 
 	@Override
