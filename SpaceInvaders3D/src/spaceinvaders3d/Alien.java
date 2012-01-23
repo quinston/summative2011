@@ -12,7 +12,7 @@ import java.awt.image.BufferedImage;
 import java.util.GregorianCalendar;
 
 public class Alien implements Damageable {
-
+    int i = 0;
 	public static BufferedImage[][] alienSprites = {
 		{
 			Utility.loadImage("alien1-1.png"),
@@ -96,7 +96,8 @@ public class Alien implements Damageable {
 		lowerCorner.z += Math.round(0.5 * Math.sin(x));*/
                 this.upperCorner.z+=0.05;
                 this.lowerCorner.z+=0.05;
-                System.out.println("Moved");
+                i++;
+                System.out.println("Moved"+i);
 	}
 
 	@Override
