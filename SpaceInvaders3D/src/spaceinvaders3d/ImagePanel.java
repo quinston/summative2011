@@ -52,7 +52,7 @@ public class ImagePanel extends javax.swing.JPanel {
 				}
 			}
                         if(Main.player.getHP()<=0){
-                            
+                            Main.gameDone = true;
                         }
 
 		}
