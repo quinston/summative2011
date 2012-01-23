@@ -5,8 +5,8 @@ import spaceinvaders3d.Point3D;
 import spaceinvaders3d.Bullet;
 
 import java.awt.Graphics2D;
-import java.awt.Point;
 import java.awt.Color;
+import java.awt.*;
 
 public class Ship implements Damageable {
 
@@ -39,14 +39,12 @@ public class Ship implements Damageable {
 
 	@Override
 	public void paintSelf(Graphics2D g) {
-            g.setColor(Color.RED);
-            g.drawOval(178, 128, 50, 50);
-            g.drawLine(203, 128, 203, 178);
-            g.drawLine(178, 153, 228, 153);
-        }
+
+	}
+
 	
 	@Override
-	public void cycle(int cycleNomber) {
+	public void cycle(int cycleNumber) {
 		
 	}	
 
@@ -58,11 +56,13 @@ public class Ship implements Damageable {
  				new Point3D((upperCorner.x+lowerCorner.x)/2+5, 
  				(upperCorner.y+lowerCorner.y)/2+5, 
  				(upperCorner.z+lowerCorner.z)/2+5), 
- 				new Point3D(0, 0, (float) - 0.05));
-                System.out.println(upperCorner.x+", "+upperCorner.y+", "+upperCorner.z);
-                System.out.println(lowerCorner.x+", "+lowerCorner.y+", "+lowerCorner.z);
+ 				new Point3D(0, 0, (float) - 1));
+                System.out.println(upperCorner.x+", "
+						+upperCorner.y+", "+upperCorner.z);
+                System.out.println(lowerCorner.x+", "
+						+lowerCorner.y+", "+lowerCorner.z);
 		b.owner = this;
-                Main.damageables.add(b);
+        Main.damageables.add(b);
 	}
 
 	public void moveLeft() {

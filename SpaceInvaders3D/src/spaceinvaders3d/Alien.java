@@ -12,7 +12,7 @@ import java.awt.image.BufferedImage;
 import java.util.GregorianCalendar;
 
 public class Alien implements Damageable {
-    int i = 0;
+    private int i = 0; //for debugging purposes???
 	public static BufferedImage[][] alienSprites = {
 		{
 			Utility.loadImage("alien1-1.png"),
@@ -80,24 +80,25 @@ public class Alien implements Damageable {
 	}
 
 	public void move(int cycleNumber) {
-		/*//Input to sine called x for lack of better name
-		double x = cycleNumber / 30.0 * Math.PI ;
+		//Input to sine called x for lack of better name
+		double x = cycleNumber /  30. * Math.PI ;
 		
 		//stuff to slow it down.
 		
 		upperCorner.x = initialUpperCorner.x 
-				+ Math.round(0.5 * Math.sin(x));
-		upperCorner.y += Math.round(0.5 * Math.sin(x));
-		upperCorner.z += Math.round(0.5 * Math.sin(x));	
+				+ (float) ( 0.2 * Math.sin(x) );
+		//upperCorner.y += Math.round(0.5 * Math.sin(x));
+		//upperCorner.z += Math.round(0.5 * Math.sin(x));	
 		
 		lowerCorner.x = initialLowerCorner.x 
-				+ Math.round(0.5 * Math.sin(x));
-		lowerCorner.y += Math.round(0.5 * Math.sin(x));		
-		lowerCorner.z += Math.round(0.5 * Math.sin(x));*/
-                this.upperCorner.z+=0.05;
-                this.lowerCorner.z+=0.05;
-                i++;
-                System.out.println("Moved"+i);
+				+ (float)( 0.2 * Math.sin(x) );
+		//lowerCorner.y += Math.round(0.5 * Math.sin(x));		
+		//lowerCorner.z += Math.round(0.5 * Math.sin(x));
+        upperCorner.z+=0.05;
+        lowerCorner.z+=0.05;
+		
+        i++;
+        System.out.println("Moved"+i);
 	}
 
 	@Override
