@@ -14,8 +14,7 @@ package spaceinvaders3d;
  *
  * @author Stephen Wen
  */
-import java.awt.event.*;
-public class GameFrame extends javax.swing.JFrame implements KeyListener{
+public class GameFrame extends javax.swing.JFrame{
 
     /** Creates new form GameFrame */
     public GameFrame() {
@@ -35,6 +34,18 @@ public class GameFrame extends javax.swing.JFrame implements KeyListener{
         imagePanel1 = new spaceinvaders3d.ImagePanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        imagePanel1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                imagePanel1KeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                imagePanel1KeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                imagePanel1KeyTyped(evt);
+            }
+        });
 
         javax.swing.GroupLayout imagePanel1Layout = new javax.swing.GroupLayout(imagePanel1);
         imagePanel1.setLayout(imagePanel1Layout);
@@ -60,6 +71,20 @@ public class GameFrame extends javax.swing.JFrame implements KeyListener{
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void imagePanel1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_imagePanel1KeyPressed
+        // TODO add your handling code here:
+        int keyCode = evt.getKeyCode();
+        System.out.println(""+keyCode);
+    }//GEN-LAST:event_imagePanel1KeyPressed
+
+    private void imagePanel1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_imagePanel1KeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_imagePanel1KeyReleased
+
+    private void imagePanel1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_imagePanel1KeyTyped
+        // TODO add your handling code here:
+    }//GEN-LAST:event_imagePanel1KeyTyped
 
     /**
      * @param args the command line arguments
@@ -91,7 +116,7 @@ public class GameFrame extends javax.swing.JFrame implements KeyListener{
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
-
+            imagePanel1.addKeyListener(this);
             public void run() {
                 new GameFrame().setVisible(true);
 
@@ -99,30 +124,7 @@ public class GameFrame extends javax.swing.JFrame implements KeyListener{
             }
         });
     }
-    @Override
-    public void keyPressed(KeyEvent e){
-        if(e.getKeyCode() == e.VK_SPACE){
-            Main.player.shoot();
-        }
-        else if(e.getKeyCode() == e.VK_LEFT){
-            Main.player.moveLeft();
-        }
-        else if(e.getKeyCode() == e.VK_RIGHT){
-            Main.player.moveRight();
-        }
-        Main.camera.position.x = (Main.player.getUpperCorner().x +Main.player.getLowerCorner().x)/2;
-        Main.camera.position.y = (Main.player.getUpperCorner().y+Main.player.getLowerCorner().y)/2;
-        Main.camera.position.z = (Main.player.getUpperCorner().z+Main.player.getLowerCorner().z)/2;
-        System.out.println(""+e.getKeyCode());
-    }
-    @Override
-    public void keyReleased(KeyEvent e){
-        
-    }
-    @Override
-    public void keyTyped(KeyEvent e){
-        
-    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public spaceinvaders3d.ImagePanel imagePanel1;
     // End of variables declaration//GEN-END:variables

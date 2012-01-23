@@ -15,6 +15,7 @@ package spaceinvaders3d;
  * @author Stephen Wen
  */
 import java.awt.*;
+import java.awt.event.*;
 import java.beans.Beans;
 
 import java.util.ArrayList;
@@ -24,7 +25,7 @@ import java.util.TimerTask;
 import java.awt.image.BufferedImage;
 import java.util.GregorianCalendar;
 
-public class ImagePanel extends javax.swing.JPanel {
+public class ImagePanel extends javax.swing.JPanel implements KeyListener {
 
 	/** Creates new form ImagePanel */
 	public ImagePanel() {
@@ -60,7 +61,7 @@ public class ImagePanel extends javax.swing.JPanel {
 
 
 		super.paintComponent(g0); //paint background
-		if (!Beans.isDesignTime()) {
+		if(!Beans.isDesignTime()) {
 			for (spaceinvaders3d.Damageable d : Main.damageables) {
 				d.paintSelf((Graphics2D) g0);
 			}

@@ -10,7 +10,7 @@ import javax.imageio.IIOException;
 public class Utility {
 	public static String workingDirectory = new Utility().getClass()
 			.getResource("Utility.class").toString()
-			.replace("Utility.class", "").replaceAll("\\w+:","");
+			.replace("Utility.class", "").replaceAll("file:","");
 	
 	public static BufferedImage loadImage(String filename) {
 		String fullFilename =  workingDirectory + filename;
