@@ -80,10 +80,14 @@ public class GameFrame extends javax.swing.JFrame{
 
     private void imagePanel1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_imagePanel1KeyReleased
         // TODO add your handling code here:
+        int keyCode = evt.getKeyCode();
+        System.out.println(""+keyCode);
     }//GEN-LAST:event_imagePanel1KeyReleased
 
     private void imagePanel1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_imagePanel1KeyTyped
         // TODO add your handling code here:
+        int keyCode = evt.getKeyCode();
+        System.out.println(""+keyCode);
     }//GEN-LAST:event_imagePanel1KeyTyped
 
     /**
@@ -116,7 +120,7 @@ public class GameFrame extends javax.swing.JFrame{
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
-            imagePanel1.addKeyListener(this);
+            imagePanel1.addKeyListener(this.imagePanel1);
             public void run() {
                 new GameFrame().setVisible(true);
 
@@ -126,6 +130,6 @@ public class GameFrame extends javax.swing.JFrame{
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    public spaceinvaders3d.ImagePanel imagePanel1;
+    public static spaceinvaders3d.ImagePanel imagePanel1;
     // End of variables declaration//GEN-END:variables
 }

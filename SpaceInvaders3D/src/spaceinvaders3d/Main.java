@@ -7,12 +7,13 @@ package spaceinvaders3d;
 
 import java.util.ArrayList;
 import java.util.ListIterator;
+import java.awt.event.*;
 
 /**
  *
  * @author Stephen Wen
  */
-public class Main{
+public class Main implements KeyListener{
 
     /**
      * @param args the command line arguments
@@ -30,15 +31,26 @@ public class Main{
         camera.position.y = 0;
         camera.position.z = 0;
         // TODO code application logic here
-            
+        frame.imagePanel1.addKeyListener(this);    
 						
 		damageables.add(new spaceinvaders3d.Alien(new Point3D(0,0,-130), new Point3D(5,5,-130), 0 ) );
 		damageables.add(new spaceinvaders3d.Alien(new Point3D(-5,-5,-120), new Point3D(0,0,-120), 1) );
 		damageables.add(new spaceinvaders3d.Alien(new Point3D(10,10,-110), new Point3D(15,15,-110), 2) );
-        while(true){
-            
-        }
                 
+    }
+        @Override
+    public void keyTyped(KeyEvent e) {
+        System.out.println(""+e.getKeyCode());
+    }
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+        System.out.println(""+e.getKeyCode());
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
+        System.out.println(""+e.getKeyCode());
     }
 
     

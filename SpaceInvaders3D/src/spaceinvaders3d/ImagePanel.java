@@ -34,6 +34,21 @@ public class ImagePanel extends javax.swing.JPanel implements KeyListener {
 		new Timer().schedule(new ImagePanel.CycleTask(), 0, 17); //cycle twice as fast as painting.
 	}
 
+    @Override
+    public void keyTyped(KeyEvent e) {
+        System.out.println(""+e.getKeyCode());
+    }
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+        System.out.println(""+e.getKeyCode());
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
+        System.out.println(""+e.getKeyCode());
+    }
+
 	private class RepaintTask extends TimerTask {
 		@Override
 		public void run() {
@@ -70,7 +85,6 @@ public class ImagePanel extends javax.swing.JPanel implements KeyListener {
 		//blit the buffer
 		g.drawImage(buffer, 0, 0, null);
 	}
-        
 
 	/** This method is called from within the constructor to
 	 * initialize the form.
