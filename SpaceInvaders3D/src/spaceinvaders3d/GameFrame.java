@@ -119,7 +119,7 @@ public class GameFrame extends javax.swing.JFrame{
             public void run() {
                 GameFrame f = new GameFrame();
 				f.setVisible(true);
-				f.imagePanel1.addKeyListener(this)
+				f.imagePanel1.addKeyListener(f.imagePanel1);
 
 				//spaceinvaders3d.Main.main(new String[0]);
             }
