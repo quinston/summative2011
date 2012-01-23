@@ -25,7 +25,7 @@ import java.util.TimerTask;
 import java.awt.image.BufferedImage;
 import java.util.GregorianCalendar;
 
-public class ImagePanel extends javax.swing.JPanel implements KeyListener {
+public class ImagePanel extends javax.swing.JPanel implements KeyListener{
 
 	/** Creates new form ImagePanel */
 	public ImagePanel() {
@@ -36,18 +36,20 @@ public class ImagePanel extends javax.swing.JPanel implements KeyListener {
 
     @Override
     public void keyTyped(KeyEvent e) {
-        System.out.println(""+e.getKeyCode());
+        Main.frame.imagePanel1.
     }
 
     @Override
     public void keyPressed(KeyEvent e) {
-        System.out.println(""+e.getKeyCode());
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
     public void keyReleased(KeyEvent e) {
-        System.out.println(""+e.getKeyCode());
+        throw new UnsupportedOperationException("Not supported yet.");
     }
+
+
 
 	private class RepaintTask extends TimerTask {
 		@Override

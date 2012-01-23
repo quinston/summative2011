@@ -30,8 +30,7 @@ public class Main implements KeyListener{
         camera.position.x = 0;
         camera.position.y = 0;
         camera.position.z = 0;
-        // TODO code application logic here
-        frame.imagePanel1.addKeyListener(this);    
+        // TODO code application logic here    
 						
 		damageables.add(new spaceinvaders3d.Alien(new Point3D(0,0,-130), new Point3D(5,5,-130), 0 ) );
 		damageables.add(new spaceinvaders3d.Alien(new Point3D(-5,-5,-120), new Point3D(0,0,-120), 1) );
