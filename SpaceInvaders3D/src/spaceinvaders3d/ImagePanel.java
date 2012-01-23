@@ -70,6 +70,19 @@ public class ImagePanel extends javax.swing.JPanel implements KeyListener {
 		//blit the buffer
 		g.drawImage(buffer, 0, 0, null);
 	}
+	
+	@Override
+	public void keyPressed(KeyEvent e){
+		
+	}
+	@Override
+	public void keyReleased(KeyEvent e) {
+		
+	}
+	@Override 
+	public void keyTyped(KeyEvent e) {
+		
+	}
         
 
 	/** This method is called from within the constructor to
