@@ -33,25 +33,6 @@ public class ImagePanel extends javax.swing.JPanel{
 		new Timer().schedule(new ImagePanel.CycleTask(), 0, 17); //cycle twice as fast as painting.
 	}
 
-    /*@Override
-    public void keyTyped(KeyEvent e) {
-        int keyCode = e.getKeyCode();
-        System.out.println(""+keyCode);
-    }
-
-    @Override
-    public void keyPressed(KeyEvent e) {
-        int keyCode = e.getKeyCode();
-        System.out.println(""+keyCode);
-    }
-
-    @Override
-    public void keyReleased(KeyEvent e) {
-        int keyCode = e.getKeyCode();
-        System.out.println(""+keyCode);
-    }*/
-
-
 
 	private class RepaintTask extends TimerTask {
 		@Override

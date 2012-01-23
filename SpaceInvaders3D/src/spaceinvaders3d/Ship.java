@@ -20,7 +20,9 @@ public class Ship implements Damageable {
 		return lowerCorner;
 	}
 
-	public Ship() {
+	public Ship(Point3D UC, Point3D LC) {
+            upperCorner = UC;
+            lowerCorner = LC;
 	}
 
 	@Override
