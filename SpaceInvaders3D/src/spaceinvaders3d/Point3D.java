@@ -22,7 +22,7 @@ public class Point3D {
 
     public Point convertTo2D() {
 
-         float dX = Main.camera.position.x - this.x;
+        float dX = Main.camera.position.x - this.x;
         float dY = Main.camera.position.y - this.y;
         float dZ = Math.abs(Main.camera.position.z - this.z);
 

@@ -14,7 +14,8 @@ package spaceinvaders3d;
  *
  * @author Stephen Wen
  */
-public class GameFrame extends javax.swing.JFrame {
+import java.awt.event.*;
+public class GameFrame extends javax.swing.JFrame implements KeyListener{
 
     /** Creates new form GameFrame */
     public GameFrame() {
@@ -94,9 +95,33 @@ public class GameFrame extends javax.swing.JFrame {
             public void run() {
                 new GameFrame().setVisible(true);
 
-				spaceinvaders3d.Main.main(new String[0]);
+				//spaceinvaders3d.Main.main(new String[0]);
             }
         });
+    }
+    @Override
+    public void keyPressed(KeyEvent e){
+        if(e.getKeyCode() == e.VK_SPACE){
+            Main.player.shoot();
+        }
+        else if(e.getKeyCode() == e.VK_LEFT){
+            Main.player.moveLeft();
+        }
+        else if(e.getKeyCode() == e.VK_RIGHT){
+            Main.player.moveRight();
+        }
+        Main.camera.position.x = (Main.player.getUpperCorner().x +Main.player.getLowerCorner().x)/2;
+        Main.camera.position.y = (Main.player.getUpperCorner().y+Main.player.getLowerCorner().y)/2;
+        Main.camera.position.z = (Main.player.getUpperCorner().z+Main.player.getLowerCorner().z)/2;
+        System.out.println(""+e.getKeyCode());
+    }
+    @Override
+    public void keyReleased(KeyEvent e){
+        
+    }
+    @Override
+    public void keyTyped(KeyEvent e){
+        
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public spaceinvaders3d.ImagePanel imagePanel1;
