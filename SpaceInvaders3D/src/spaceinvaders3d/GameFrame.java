@@ -125,6 +125,12 @@ public class GameFrame extends javax.swing.JFrame implements KeyListener{
         else if(keyCode == KeyEvent.VK_LEFT){
             Main.player.moveLeft();
         }
+        else if(keyCode == KeyEvent.VK_UP){
+            Main.player.moveUp();
+        }
+        else if(keyCode == KeyEvent.VK_DOWN){
+            Main.player.moveDown();
+        }
         System.out.println("Pressed " + e.getKeyChar());
     }
 

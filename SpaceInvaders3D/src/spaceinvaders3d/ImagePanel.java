@@ -68,8 +68,10 @@ public class ImagePanel extends javax.swing.JPanel{
 			for (spaceinvaders3d.Damageable d : Main.damageables) {
 			    if(d.getHP()>0){
                                 d.paintSelf((Graphics2D) g0);
+                                
                             }
 			}
+                        Main.player.paintSelf(g0);
 		}
 		
 		//blit the buffer

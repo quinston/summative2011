@@ -5,6 +5,8 @@ import spaceinvaders3d.Point3D;
 import spaceinvaders3d.Bullet;
 
 import java.awt.Graphics2D;
+import java.awt.Point;
+import java.awt.Color;
 
 public class Ship implements Damageable {
 
@@ -37,7 +39,11 @@ public class Ship implements Damageable {
 
 	@Override
 	public void paintSelf(Graphics2D g) {
-	}
+            g.setColor(Color.RED);
+            g.drawOval(178, 128, 50, 50);
+            g.drawLine(203, 128, 203, 178);
+            g.drawLine(178, 153, 228, 153);
+        }
 	
 	@Override
 	public void cycle(int cycleNomber) {
@@ -45,7 +51,8 @@ public class Ship implements Damageable {
 	}	
 
 	public void shoot() {
- 		Bullet b = new Bullet(new Point3D((upperCorner.x+lowerCorner.x)/2-5, (upperCorner.y+lowerCorner.y)/2-5, (upperCorner.z+lowerCorner.z)/2-5), new Point3D((upperCorner.x+lowerCorner.x)/2+5, (upperCorner.y+lowerCorner.y)/2+5, (upperCorner.z+lowerCorner.z)/2+5), new Point3D(0, 0, (float) - 0.05));
+ 		//Bullet b = new Bullet(new Point3D((upperCorner.x+lowerCorner.x)/2-1, (upperCorner.y+lowerCorner.y)/2-1, (upperCorner.z+lowerCorner.z)/2), new Point3D((upperCorner.x+lowerCorner.x)/2+1, (upperCorner.y+lowerCorner.y)/2+2, (upperCorner.z+lowerCorner.z)/2+1), new Point3D(0, 0, (float) - 0.05));
+                Bullet b = new Bullet(new Point3D(upperCorner.x-100, upperCorner.y-100, upperCorner.z+100), new Point3D(lowerCorner.x+100, lowerCorner.y+100, lowerCorner.z-100), new Point3D(0, 0, (float)0.5));
                 System.out.println(upperCorner.x+", "+upperCorner.y+", "+upperCorner.z);
                 System.out.println(lowerCorner.x+", "+lowerCorner.y+", "+lowerCorner.z);
 		b.owner = this;
@@ -61,6 +68,14 @@ public class Ship implements Damageable {
 		upperCorner.x += speed;
 		lowerCorner.x += speed;
 	}
+        public void moveUp(){
+                upperCorner.y-=speed;
+                lowerCorner.y-=speed;
+        }
+        public void moveDown(){
+                upperCorner.y+=speed;
+                lowerCorner.y+=speed;
+        }
 
 	public boolean checkCollision(Damageable d) {
 		if ((lowerCorner.x >= d.getUpperCorner().x)
