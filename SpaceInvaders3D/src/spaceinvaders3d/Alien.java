@@ -13,6 +13,7 @@ import java.util.GregorianCalendar;
 
 public class Alien implements Damageable {
     private int i = 0; //for debugging purposes???
+    
 	public static BufferedImage[][] alienSprites = {
 		{
 			Utility.loadImage("alien1-1.png"),
@@ -70,6 +71,9 @@ public class Alien implements Damageable {
 	@Override
 	public void cycle(int cycleNumber) {
 		move(cycleNumber);
+                if(upperCorner.z<=-130){
+                    Main.gameDone = true;
+                }
 	}
 
 	public void shoot() {

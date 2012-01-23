@@ -23,7 +23,7 @@ public class Main {
     public static Camera camera = new Camera();
     public static Ship player = new Ship(new Point3D(50, 50, 0), new Point3D(-50, -50, 0));
 	public static ArrayList<spaceinvaders3d.Damageable> damageables = new ArrayList<spaceinvaders3d.Damageable>();
-
+    public static boolean gameDone = true;
     
     public static void main(String[] args) {
         frame.setVisible(true);
