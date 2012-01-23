@@ -57,11 +57,11 @@ public class Ship implements Damageable {
  				new Point3D((upperCorner.x+lowerCorner.x)/2+5, 
  				(upperCorner.y+lowerCorner.y)/2+5, 
  				(upperCorner.z+lowerCorner.z)/2+5), 
- 				new Point3D(0, 0, (float) - 1));
-                System.out.println(upperCorner.x+", "
-						+upperCorner.y+", "+upperCorner.z);
-                System.out.println(lowerCorner.x+", "
-						+lowerCorner.y+", "+lowerCorner.z);
+ 				new Point3D(0, 0, (float) - 5));
+                //System.out.println(upperCorner.x+", "
+				//		+upperCorner.y+", "+upperCorner.z);
+                //System.out.println(lowerCorner.x+", "
+				//		+lowerCorner.y+", "+lowerCorner.z);
 		b.owner = this;
         Main.damageables.add(b);
 	}
@@ -85,12 +85,12 @@ public class Ship implements Damageable {
         }
 
 	public boolean checkCollision(Damageable d) {
-		if ((lowerCorner.x >= d.getUpperCorner().x)
+		if ((upperCorner.x >= d.getUpperCorner().x)
 				&& (upperCorner.x <= d.getLowerCorner().x)
-				&& (lowerCorner.y >= d.getUpperCorner().y)
+				&& (upperCorner.y >= d.getUpperCorner().y)
 				&& (upperCorner.y <= d.getLowerCorner().y)
 				&& (upperCorner.z >= d.getLowerCorner().z)
-				&& (lowerCorner.z <= d.getUpperCorner().z)) {
+				&& (upperCorner.z <= d.getUpperCorner().z)) {
 			return true;
 		} else {
 			return false;

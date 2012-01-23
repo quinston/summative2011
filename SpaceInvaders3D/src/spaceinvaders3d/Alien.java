@@ -75,7 +75,7 @@ public class Alien implements Damageable {
 			shoot();
 		}
 		move(cycleNumber);
-                if(upperCorner.z>=-130){
+                if(upperCorner.z>=-30){
                     Main.gameDone = true;
                 }
 	}
@@ -107,8 +107,8 @@ public class Alien implements Damageable {
 				+ (float)( 1* Math.sin(x) );
 		//lowerCorner.y += Math.round(0.5 * Math.sin(x));		
 		//lowerCorner.z += Math.round(0.5 * Math.sin(x));
-        upperCorner.z+=0.005;
-        lowerCorner.z+=0.005;
+        upperCorner.z+=0.05;
+        lowerCorner.z+=0.05;
 		
         i++;
         System.out.println("Moved"+i);
