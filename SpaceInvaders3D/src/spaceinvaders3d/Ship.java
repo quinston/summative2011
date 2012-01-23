@@ -39,7 +39,8 @@ public class Ship implements Damageable {
 
 	@Override
 	public void paintSelf(Graphics2D g) {
-
+		g.setColor(Color.GREEN);
+		g.drawString(hp + "", 10,10);
 	}
 
 	

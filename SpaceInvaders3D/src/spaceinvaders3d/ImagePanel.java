@@ -45,15 +45,20 @@ public class ImagePanel extends javax.swing.JPanel {
 
 		@Override
 		public void run() {
-			for (spaceinvaders3d.Damageable d : Main.damageables) {
-				if (d.getHP() > 0) {
-					d.cycle(new GregorianCalendar()
-							.get(GregorianCalendar.MILLISECOND) / 17);
+			synchronized (Main.damageables) {
+				for (spaceinvaders3d.Damageable d : Main.damageables) {
+					if (d.getHP() > 0) {
+						d.cycle(new GregorianCalendar().get(GregorianCalendar.MILLISECOND) / 17);
+					}
 				}
 			}
-                        if(Main.player.getHP()<=0){
-                            Main.gameDone = true;
-                        }
+				for (spaceinvaders3d.Damageable d : Main.damageableBay) {
+					Main.damageables.add(d);
+				}
+				Main.damageableBay.clear();
+			if (Main.player.getHP() <= 0) {
+				Main.gameDone = true;
+			}
 
 		}
 	}
@@ -67,35 +72,36 @@ public class ImagePanel extends javax.swing.JPanel {
 
 
 		super.paintComponent(g0); //paint background
-		if (!Beans.isDesignTime()&&!Main.gameDone) {
-			for (spaceinvaders3d.Damageable d : Main.damageables) {
-
-				if (d.getHP() > 0) {
-					d.paintSelf((Graphics2D) g0);
+		if (!Beans.isDesignTime() && !Main.gameDone) {
+			synchronized (Main.damageables) {
+				for (spaceinvaders3d.Damageable d : Main.damageables) {
+					if (d.getHP() > 0) {
+						d.paintSelf((Graphics2D) g0);
+					}
 				}
 			}
-                        Main.player.paintSelf(g0);
-                        //CROSSHAIR!
-                        g0.setColor(Color.RED);
-                        spaceinvaders3d.ImagePanel imagePanel = Main.frame.imagePanel1;
-                        g0.drawOval(imagePanel.getWidth()/2-15, imagePanel.getHeight()/2-15
-                                        , 30, 30);
-                        g0.drawLine(imagePanel.getWidth()/2, imagePanel.getHeight()/2+50,
-                                        imagePanel.getWidth()/2, imagePanel.getHeight()/2-50);	
-                        g0.drawLine(imagePanel.getWidth()/2+50, imagePanel.getHeight()/2,
-                                        imagePanel.getWidth()/2-50, imagePanel.getHeight()/2);	
+			Main.player.paintSelf(g0);
+			//CROSSHAIR!
+			g0.setColor(Color.RED);
+			spaceinvaders3d.ImagePanel imagePanel = Main.frame.imagePanel1;
+			g0.drawOval(imagePanel.getWidth() / 2 - 15, imagePanel.getHeight() / 2 - 15, 30, 30);
+			g0.drawLine(imagePanel.getWidth() / 2, imagePanel.getHeight() / 2 + 50,
+					imagePanel.getWidth() / 2, imagePanel.getHeight() / 2 - 50);
+			g0.drawLine(imagePanel.getWidth() / 2 + 50, imagePanel.getHeight() / 2,
+					imagePanel.getWidth() / 2 - 50, imagePanel.getHeight() / 2);
+
 		}
 
-				
-		
+
+
 		//blit the buffer
 		g.drawImage(buffer, 0, 0, null);
-                if(Main.gameDone){
-                    g.setColor(Color.BLACK);
-                    g.fillRect(0, 0, Main.frame.WIDTH, Main.frame.HEIGHT);
-                    g.setColor(Color.RED);
-                    g.drawString("GAME OVER", 100, 100);
-                }
+		if (Main.gameDone) {
+			g.setColor(Color.BLACK);
+			g.fillRect(0, 0, Main.frame.WIDTH, Main.frame.HEIGHT);
+			g.setColor(Color.RED);
+			g.drawString("GAME OVER", 100, 100);
+		}
 	}
 
 	/** This method is called from within the constructor to

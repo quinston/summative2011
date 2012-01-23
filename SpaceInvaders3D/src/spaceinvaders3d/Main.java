@@ -23,7 +23,12 @@ public class Main {
     public static Camera camera = new Camera();
     public static Ship player = new Ship(new Point3D(50, 50, 0), new Point3D(-50, -50, 0));
 	public static ArrayList<spaceinvaders3d.Damageable> damageables = new ArrayList<spaceinvaders3d.Damageable>();
+
     public static boolean gameDone = false;
+
+	//add to the bay before adding to damageables to avoid concurrentmodificationexception
+	public static ArrayList<spaceinvaders3d.Damageable> damageableBay =new ArrayList<spaceinvaders3d.Damageable>();
+
     
     public static void main(String[] args) {
         frame.setVisible(true);
@@ -32,10 +37,10 @@ public class Main {
         camera.position.z = 0;
         // TODO code application logic here    
 		
-		for (int i = 0; i < 15*8; i+=15) {
-			damageables.add(new spaceinvaders3d.Alien(new Point3D(i-7,-5,-50), new Point3D(i+15,5,-50), 0 ) );
-			damageables.add(new spaceinvaders3d.Alien(new Point3D(i-7,-5,-60), new Point3D(i+15,5,-60), 1) );
-			damageables.add(new spaceinvaders3d.Alien(new Point3D(i-7,-5,-70), new Point3D(i+15,5,-70), 2) );
+		for (int i = 15*-4; i < 15*4; i+=15) {
+			damageables.add(new spaceinvaders3d.Alien(new Point3D(i,-5,-230), new Point3D(i+10,5,-230), 0 ) );
+			damageables.add(new spaceinvaders3d.Alien(new Point3D(i,-5,-220), new Point3D(i+10,5,-220), 1) );
+			damageables.add(new spaceinvaders3d.Alien(new Point3D(i,-5,-210), new Point3D(i+10,5,-210), 2) );
 		}
 		damageables.add(player);
                 frame.addKeyListener(frame);

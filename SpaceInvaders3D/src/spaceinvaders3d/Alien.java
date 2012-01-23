@@ -10,6 +10,7 @@ import java.awt.Point;
 import java.awt.Color;
 import java.awt.image.BufferedImage;
 import java.util.GregorianCalendar;
+import java.util.Random;
 
 public class Alien implements Damageable {
     private int i = 0; //for debugging purposes???
@@ -63,43 +64,51 @@ public class Alien implements Damageable {
 		g.drawImage(sprite, (int) upperCorner2D.getX(), (int) upperCorner2D.getY(),
 				(int) size.getX(), (int) size.getY(), null);
 		g.setColor(Color.red);
-                g.drawString(upperCorner.x+", "+upperCorner.y+", "+ upperCorner.z, 100, 100+species*10);
+                //g.drawString(upperCorner.x+", "+upperCorner.y+", "+ upperCorner.z, 100, 100+species*10);
 		//g.drawString("" + upperCorner2D.getX() + " " + upperCorner2D.getY()
 				//+ " " + size.getX() + " " + size.getY(), 10, upperCorner2D.y );
 	}
 	
 	@Override
 	public void cycle(int cycleNumber) {
+		if (r.nextInt(300) == 0) {
+			shoot();
+		}
 		move(cycleNumber);
-                if(upperCorner.z<=-130){
+                if(upperCorner.z>=-130){
                     Main.gameDone = true;
                 }
 	}
 
 	public void shoot() {
-		Bullet b = new Bullet(upperCorner, lowerCorner,
-				new Point3D(0, (float)0.5, 0));
+		Bullet b = new Bullet(
+				new Point3D(upperCorner.x-2,upperCorner.y-2,upperCorner.z-2), 
+				new Point3D(lowerCorner.x-2, upperCorner.y-2, upperCorner.z-2),
+				new Point3D(0, 0, (float)0.05 ));
 		b.owner = this;
-                Main.damageables.add(b);
+                Main.damageableBay.add(b);
+		
+				System.out.println("Enemy bullet!");
 	}
 
 	public void move(int cycleNumber) {
+ 
 		//Input to sine called x for lack of better name
-		double x = cycleNumber /  30. * Math.PI ;
+		double x = cycleNumber /30. * Math.PI ;
 		
 		//stuff to slow it down.
 		
 		upperCorner.x = initialUpperCorner.x 
-				+ (float) ( 0.2 * Math.sin(x) );
+				+ (float) ( 1* Math.sin(x) );
 		//upperCorner.y += Math.round(0.5 * Math.sin(x));
 		//upperCorner.z += Math.round(0.5 * Math.sin(x));	
 		
 		lowerCorner.x = initialLowerCorner.x 
-				+ (float)( 0.2 * Math.sin(x) );
+				+ (float)( 1* Math.sin(x) );
 		//lowerCorner.y += Math.round(0.5 * Math.sin(x));		
 		//lowerCorner.z += Math.round(0.5 * Math.sin(x));
-        upperCorner.z+=0.05;
-        lowerCorner.z+=0.05;
+        upperCorner.z+=0.005;
+        lowerCorner.z+=0.005;
 		
         i++;
         System.out.println("Moved"+i);
@@ -125,4 +134,7 @@ public class Alien implements Damageable {
 			
 	private int species; // Type 1 has alienSprite1a, b; Type 2 has alienSprite2a etc.
 	private final int spriteChangeDelay = 150;
+	
+	
+	private Random r = new Random();
 }
