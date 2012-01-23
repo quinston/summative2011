@@ -116,9 +116,10 @@ public class GameFrame extends javax.swing.JFrame{
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
-            imagePanel1.addKeyListener(this);
             public void run() {
-                new GameFrame().setVisible(true);
+                GameFrame f = new GameFrame();
+				f.setVisible(true);
+				f.imagePanel1.addKeyListener(this)
 
 				//spaceinvaders3d.Main.main(new String[0]);
             }
