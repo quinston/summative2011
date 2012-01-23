@@ -46,10 +46,14 @@ public class Ship implements Damageable {
 	
 	@Override
 	public void cycle(int cycleNumber) {
-		
+		fireDelay--;
 	}	
 
 	public void shoot() {
+		if (fireDelay > 0) {
+			return;
+
+		}
 
  		Bullet b = new Bullet(new Point3D((upperCorner.x+lowerCorner.x)/2-5, 
  				(upperCorner.y+lowerCorner.y)/2-5, 
@@ -57,13 +61,17 @@ public class Ship implements Damageable {
  				new Point3D((upperCorner.x+lowerCorner.x)/2+5, 
  				(upperCorner.y+lowerCorner.y)/2+5, 
  				(upperCorner.z+lowerCorner.z)/2+5), 
- 				new Point3D(0, 0, (float) - 5));
+ 				new Point3D(0, 0, (float) +10));
                 //System.out.println(upperCorner.x+", "
 				//		+upperCorner.y+", "+upperCorner.z);
                 //System.out.println(lowerCorner.x+", "
 				//		+lowerCorner.y+", "+lowerCorner.z);
+
+				System.out.println("Friendly bullet");
 		b.owner = this;
         Main.damageables.add(b);
+
+		fireDelay = maxFireDelay;
 	}
 
 	public void moveLeft() {
@@ -85,17 +93,16 @@ public class Ship implements Damageable {
         }
 
 	public boolean checkCollision(Damageable d) {
-		if ((upperCorner.x >= d.getUpperCorner().x)
-				&& (upperCorner.x <= d.getLowerCorner().x)
-				&& (upperCorner.y >= d.getUpperCorner().y)
-				&& (upperCorner.y <= d.getLowerCorner().y)
-				&& (upperCorner.z >= d.getLowerCorner().z)
-				&& (upperCorner.z <= d.getUpperCorner().z)) {
-			return true;
-		} else {
-			return false;
-		}
+		return (Utility.isIntersecting(upperCorner, lowerCorner, d.getUpperCorner(), d.getLowerCorner() ) ) ;
 	}
+
+	public void onCollision(Damageable d) {
+
+
+	}
+
 	private int hp = 3;
 	private final int speed = 5;
+	private int fireDelay = 0;
+	private final int maxFireDelay = 20;
 }

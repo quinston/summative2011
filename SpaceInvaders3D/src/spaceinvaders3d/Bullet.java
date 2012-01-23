@@ -11,7 +11,7 @@ import java.awt.image.BufferedImage;
 public class Bullet implements Damageable {
 
     Point3D upperCorner, lowerCorner, direction;
-	int deathTimer = 900;
+	int deathTimer = 200;
     public Damageable owner;
     static BufferedImage self = Utility.loadImage("downFacingBullet.png");
     public Bullet(Point3D UpperCorner, Point3D LowerCorner, Point3D movementDirection) {
@@ -31,26 +31,18 @@ public class Bullet implements Damageable {
     }
 
     public boolean checkCollision(Damageable d) {
-        if ((upperCorner.x >= d.getUpperCorner().x)
-                && (upperCorner.x <= d.getLowerCorner().x)
-                && (upperCorner.y >= d.getUpperCorner().y)
-                && (upperCorner.y <= d.getLowerCorner().y)
-                && (upperCorner.z >= d.getLowerCorner().z)
-                && (upperCorner.z <= d.getUpperCorner().z)) {
-            return true;
-        } else {
-            return false;
-        }
+		return (Utility.isIntersecting(upperCorner, lowerCorner, d.getUpperCorner(), d.getLowerCorner() ) ) ;
     }
 
     public void onCollision(Damageable d) {
-        if (d == owner || d.getClass().isAssignableFrom(owner.getClass())) {
+
+        if (d == owner || d.getClass().isAssignableFrom(owner.getClass()) ) {
             return;
         } else {
             if (checkCollision(d)) {
+				System.out.println("Collided with a: " + d.getClass().toString() + "while my owner is a: " + owner.getClass().toString() );
                 d.takeDamage(1);
-                System.out.println("HIT");
-
+                System.out.println("HIT. d has " + d.getHP() + "HP");
             }
         }
     }
@@ -84,7 +76,7 @@ public class Bullet implements Damageable {
         g.setColor(Color.BLACK);
         //g.drawString(""+upperCorner.x+", "+upperCorner.y+", "+upperCorner.z, 100, 100);
         //g.drawString(""+lowerCorner.x+", "+lowerCorner.y+", "+lowerCorner.z, 100, 120);
-        System.out.println("Bullet Drawn");
+        //System.out.println("Bullet Drawn");
     }
 	
 	@Override
@@ -94,11 +86,10 @@ public class Bullet implements Damageable {
 			hp = 0;
 		}
 		move();
-		
-                for (spaceinvaders3d.Damageable d : Main.damageables) {
-                    onCollision(d);
-                }
-                
+//System.out.println(""+upperCorner.x+", "+upperCorner.y+", "+upperCorner.z);
+/*		
+
+*/                
 	}
     
     private int hp;

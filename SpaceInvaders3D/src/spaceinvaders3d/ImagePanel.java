@@ -49,15 +49,29 @@ public class ImagePanel extends javax.swing.JPanel {
 				for (spaceinvaders3d.Damageable d : Main.damageables) {
 					if (d.getHP() > 0) {
 						d.cycle(new GregorianCalendar().get(GregorianCalendar.MILLISECOND) / 17);
+						for (spaceinvaders3d.Damageable e : Main.damageables) {
+							if (d==e) {
+								continue;
+							}
+	    	                d.onCollision(e);
+		                }
 					}
 				}
-			}
 				for (spaceinvaders3d.Damageable d : Main.damageableBay) {
 					Main.damageables.add(d);
 				}
-				Main.damageableBay.clear();
+			}
+
+			Main.damageableBay.clear();
+
 			if (Main.player.getHP() <= 0) {
 				Main.gameDone = true;
+			}
+
+			for (ListIterator<Damageable> i = Main.damageables.listIterator(); i.hasNext();) {
+				if (i.next().getHP() == 0) {
+					i.remove();
+				}
 			}
 
 		}
@@ -75,14 +89,15 @@ public class ImagePanel extends javax.swing.JPanel {
 		if (!Beans.isDesignTime() && !Main.gameDone) {
 			synchronized (Main.damageables) {
 				for (spaceinvaders3d.Damageable d : Main.damageables) {
-					if (d.getHP() > 0) {
+					//do not draw if dead or behind the camera
+					if (d.getHP() > 0 && d.getUpperCorner().z > -0 ) {
 						d.paintSelf((Graphics2D) g0);
 					}
 				}
 			}
 			Main.player.paintSelf(g0);
 			//CROSSHAIR!
-			g0.setColor(Color.RED);
+			g0.setColor(Color.GREEN);
 			spaceinvaders3d.ImagePanel imagePanel = Main.frame.imagePanel1;
 			g0.drawOval(imagePanel.getWidth() / 2 - 15, imagePanel.getHeight() / 2 - 15, 30, 30);
 			g0.drawLine(imagePanel.getWidth() / 2, imagePanel.getHeight() / 2 + 50,
@@ -102,6 +117,10 @@ public class ImagePanel extends javax.swing.JPanel {
 			g.setColor(Color.RED);
 			g.drawString("GAME OVER", 100, 100);
 		}
+
+		g.setColor(Color.YELLOW);
+
+		g.drawString(Integer.toString(Main.damageables.size()), 0, 50);
 	}
 
 	/** This method is called from within the constructor to

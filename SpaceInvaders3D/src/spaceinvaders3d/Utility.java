@@ -25,4 +25,16 @@ public class Utility {
 		}
 		return null;
 	}
+
+	public static boolean isIntersecting(spaceinvaders3d.Point3D uc1, 
+			spaceinvaders3d.Point3D lc1, 
+			spaceinvaders3d.Point3D uc2, 
+			spaceinvaders3d.Point3D lc2) {
+		if ((uc1.x >= uc2.x) && (uc1.x <= lc2.x) && 
+				(uc1.y >= uc2.y) && (uc1.y <= lc2.y) &&
+				(uc1.z >= uc2.z) && (uc1.z <= lc2.z)) {
+			return true;
+		}
+		return false;
+	}
 }

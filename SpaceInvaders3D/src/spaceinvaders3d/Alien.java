@@ -71,20 +71,22 @@ public class Alien implements Damageable {
 	
 	@Override
 	public void cycle(int cycleNumber) {
-		if (r.nextInt(300) == 0) {
+		if (r.nextInt(1000) == 0) {
 			shoot();
 		}
-		move(cycleNumber);
-                if(upperCorner.z>=-30){
+		if (cycleNumber % 3 ==0)
+			move(cycleNumber);
+                if(upperCorner.z<=-30){
                     Main.gameDone = true;
                 }
 	}
 
 	public void shoot() {
+//if (true) return;
 		Bullet b = new Bullet(
-				new Point3D(upperCorner.x-2,upperCorner.y-2,upperCorner.z-2), 
-				new Point3D(lowerCorner.x-2, upperCorner.y-2, upperCorner.z-2),
-				new Point3D(0, 0, (float)0.05 ));
+				new Point3D( (upperCorner.x+lowerCorner.x)/2-2, (upperCorner.y + lowerCorner.y)/2-2, (upperCorner.z+lowerCorner.z)/2-2), 
+				new Point3D( (upperCorner.x + lowerCorner.x)/2 +2, (upperCorner.y+lowerCorner.y)/2+2, (upperCorner.z + lowerCorner.z)/2-2),
+				new Point3D(0, 0, (float)-20 ));
 		b.owner = this;
                 Main.damageableBay.add(b);
 		
@@ -107,11 +109,9 @@ public class Alien implements Damageable {
 				+ (float)( 1* Math.sin(x) );
 		//lowerCorner.y += Math.round(0.5 * Math.sin(x));		
 		//lowerCorner.z += Math.round(0.5 * Math.sin(x));
-        upperCorner.z+=0.05;
-        lowerCorner.z+=0.05;
-		
-        i++;
-        System.out.println("Moved"+i);
+        upperCorner.z-=0.1;
+        lowerCorner.z-=0.1;
+
 	}
 
 	@Override
@@ -123,6 +123,13 @@ public class Alien implements Damageable {
 	public Point3D getLowerCorner() {
 		return lowerCorner;
 	}
+
+	public void onCollision(Damageable d) {
+
+
+	}
+
+
 	private int hp = 1;
 	private Point3D upperCorner, lowerCorner, 
 			initialUpperCorner, initialLowerCorner;

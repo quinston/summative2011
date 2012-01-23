@@ -110,16 +110,16 @@ public class GameFrame extends javax.swing.JFrame implements KeyListener{
 
     @Override
     public void keyTyped(KeyEvent e) {
+
+
         System.out.println("Typed " + e.getKeyChar());
     }
 
     @Override
     public void keyPressed(KeyEvent e) {
         int keyCode =e.getKeyCode();
-        if(keyCode == KeyEvent.VK_SPACE){
-            Main.player.shoot();
-        }
-        else if(keyCode == KeyEvent.VK_RIGHT){
+
+        if(keyCode == KeyEvent.VK_RIGHT){
             Main.player.moveRight();
         }
         else if(keyCode == KeyEvent.VK_LEFT){
@@ -136,6 +136,10 @@ public class GameFrame extends javax.swing.JFrame implements KeyListener{
 
     @Override
     public void keyReleased(KeyEvent e) {
+        int keyCode =e.getKeyCode();
+        if(keyCode == KeyEvent.VK_SPACE){
+            Main.player.shoot();
+        }
         System.out.println("Released " + e.getKeyChar());
     }
 }
