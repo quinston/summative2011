@@ -13,7 +13,7 @@ import java.awt.event.*;
  *
  * @author Stephen Wen
  */
-public class Main implements KeyListener{
+public class Main {
 
     /**
      * @param args the command line arguments
@@ -35,22 +35,8 @@ public class Main implements KeyListener{
 		damageables.add(new spaceinvaders3d.Alien(new Point3D(0,0,-130), new Point3D(5,5,-130), 0 ) );
 		damageables.add(new spaceinvaders3d.Alien(new Point3D(-5,-5,-120), new Point3D(0,0,-120), 1) );
 		damageables.add(new spaceinvaders3d.Alien(new Point3D(10,10,-110), new Point3D(15,15,-110), 2) );
+                frame.addKeyListener(frame);
                 
     }
-        @Override
-    public void keyTyped(KeyEvent e) {
-        System.out.println(""+e.getKeyCode());
-    }
-
-    @Override
-    public void keyPressed(KeyEvent e) {
-        System.out.println(""+e.getKeyCode());
-    }
-
-    @Override
-    public void keyReleased(KeyEvent e) {
-        System.out.println(""+e.getKeyCode());
-    }
-
     
 }

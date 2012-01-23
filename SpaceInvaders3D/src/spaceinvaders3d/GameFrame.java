@@ -14,7 +14,8 @@ package spaceinvaders3d;
  *
  * @author Stephen Wen
  */
-public class GameFrame extends javax.swing.JFrame{
+import java.awt.event.*;
+public class GameFrame extends javax.swing.JFrame implements KeyListener{
 
     /** Creates new form GameFrame */
     public GameFrame() {
@@ -35,17 +36,7 @@ public class GameFrame extends javax.swing.JFrame{
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        imagePanel1.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                imagePanel1KeyPressed(evt);
-            }
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                imagePanel1KeyReleased(evt);
-            }
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                imagePanel1KeyTyped(evt);
-            }
-        });
+        
 
         javax.swing.GroupLayout imagePanel1Layout = new javax.swing.GroupLayout(imagePanel1);
         imagePanel1.setLayout(imagePanel1Layout);
@@ -71,24 +62,6 @@ public class GameFrame extends javax.swing.JFrame{
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void imagePanel1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_imagePanel1KeyPressed
-        // TODO add your handling code here:
-        int keyCode = evt.getKeyCode();
-        System.out.println(""+keyCode);
-    }//GEN-LAST:event_imagePanel1KeyPressed
-
-    private void imagePanel1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_imagePanel1KeyReleased
-        // TODO add your handling code here:
-        int keyCode = evt.getKeyCode();
-        System.out.println(""+keyCode);
-    }//GEN-LAST:event_imagePanel1KeyReleased
-
-    private void imagePanel1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_imagePanel1KeyTyped
-        // TODO add your handling code here:
-        int keyCode = evt.getKeyCode();
-        System.out.println(""+keyCode);
-    }//GEN-LAST:event_imagePanel1KeyTyped
 
     /**
      * @param args the command line arguments
@@ -124,7 +97,7 @@ public class GameFrame extends javax.swing.JFrame{
             public void run() {
                 GameFrame f = new GameFrame();
 				f.setVisible(true);
-				f.imagePanel1.addKeyListener(this);
+				//f.imagePanel1.addKeyListener(f.imagePanel1);
 
 				//spaceinvaders3d.Main.main(new String[0]);
             }
@@ -132,6 +105,21 @@ public class GameFrame extends javax.swing.JFrame{
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    public static spaceinvaders3d.ImagePanel imagePanel1;
+    public spaceinvaders3d.ImagePanel imagePanel1;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void keyTyped(KeyEvent e) {
+        System.out.println("HIT");
+    }
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+        System.out.println("HIT");
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
+        System.out.println("HIT");
+    }
 }

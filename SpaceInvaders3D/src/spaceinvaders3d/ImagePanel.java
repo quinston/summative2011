@@ -15,7 +15,6 @@ package spaceinvaders3d;
  * @author Stephen Wen
  */
 import java.awt.*;
-import java.awt.event.*;
 import java.beans.Beans;
 
 import java.util.ArrayList;
@@ -25,7 +24,7 @@ import java.util.TimerTask;
 import java.awt.image.BufferedImage;
 import java.util.GregorianCalendar;
 
-public class ImagePanel extends javax.swing.JPanel implements KeyListener{
+public class ImagePanel extends javax.swing.JPanel{
 
 	/** Creates new form ImagePanel */
 	public ImagePanel() {
@@ -34,20 +33,23 @@ public class ImagePanel extends javax.swing.JPanel implements KeyListener{
 		new Timer().schedule(new ImagePanel.CycleTask(), 0, 17); //cycle twice as fast as painting.
 	}
 
-    @Override
+    /*@Override
     public void keyTyped(KeyEvent e) {
-        Main.frame.imagePanel1.
+        int keyCode = e.getKeyCode();
+        System.out.println(""+keyCode);
     }
 
     @Override
     public void keyPressed(KeyEvent e) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        int keyCode = e.getKeyCode();
+        System.out.println(""+keyCode);
     }
 
     @Override
     public void keyReleased(KeyEvent e) {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
+        int keyCode = e.getKeyCode();
+        System.out.println(""+keyCode);
+    }*/
 
 
 
