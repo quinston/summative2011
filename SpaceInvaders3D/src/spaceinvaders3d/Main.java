@@ -21,7 +21,7 @@ public class Main {
 
     public static GameFrame frame = new GameFrame();     
     public static Camera camera = new Camera();
-    public static Ship player = new Ship(new Point3D(-10, -10, 10), new Point3D(10, 10, 10));
+    public static Ship player = new Ship(new Point3D(-50, -50, 0), new Point3D(50, 50, 0));
 	public static ArrayList<spaceinvaders3d.Damageable> damageables = new ArrayList<spaceinvaders3d.Damageable>();
 
     public static boolean gameDone = false;
@@ -45,10 +45,17 @@ public class Main {
 		damageables.add(player);
                 frame.addKeyListener(frame);
                 while(true){
+					
                     camera.position.x = (player.getUpperCorner().x+player.getLowerCorner().x)/2;
                     camera.position.y = (player.getUpperCorner().y+player.getLowerCorner().y)/2;
                     camera.position.z = (player.getUpperCorner().z+player.getLowerCorner().z)/2;
-        
+					
+					/*
+					camera.position.x = player.getUpperCorner().x;
+					camera.position.y = player.getUpperCorner().y;
+					camera.position.z = player.getUpperCorner().z;
+					 * 
+					 */
                 }
     }
     

@@ -76,7 +76,7 @@ public class Alien implements Damageable {
 	
 	@Override
 	public void cycle(int cycleNumber) {
-		if (r.nextInt(10000) == 0) {
+		if (r.nextInt(3600) == 0) {
 			shoot();
 		}
 		if (cycleNumber % 3 ==0)
