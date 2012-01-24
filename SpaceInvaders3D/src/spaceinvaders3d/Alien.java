@@ -14,6 +14,8 @@ import java.util.Random;
 
 public class Alien implements Damageable {
     private int i = 0; //for debugging purposes???
+	
+
     
 	public static BufferedImage[][] alienSprites = {
 		{
@@ -34,6 +36,9 @@ public class Alien implements Damageable {
 		upperCorner  = initialUpperCorner = uc;
 		lowerCorner = initialLowerCorner = lc;
 		species = s;
+	}
+	
+	protected void finalize() {
 	}
 
 	@Override

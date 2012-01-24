@@ -112,7 +112,7 @@ public class GameFrame extends javax.swing.JFrame implements KeyListener{
     public void keyTyped(KeyEvent e) {
 
 
-        System.out.println("Typed " + e.getKeyChar());
+        //System.out.println("Typed " + e.getKeyChar());
     }
 
     @Override
@@ -131,7 +131,7 @@ public class GameFrame extends javax.swing.JFrame implements KeyListener{
         else if(keyCode == KeyEvent.VK_DOWN){
             Main.player.moveDown();
         }
-        System.out.println("Pressed " + e.getKeyChar());
+        //System.out.println("Pressed " + e.getKeyChar());
     }
 
     @Override
@@ -140,6 +140,52 @@ public class GameFrame extends javax.swing.JFrame implements KeyListener{
         if(keyCode == KeyEvent.VK_SPACE){
             Main.player.shoot();
         }
-        System.out.println("Released " + e.getKeyChar());
+        //System.out.println("Released " + e.getKeyChar());
     }
+	
+	public void createAliens() {
+		// larger z is farther from camera
+		int farthestRowZ = 230; 
+		if (level > 4) {
+			farthestRowZ = 110;
+		}
+		else {
+			farthestRowZ = 230 - level*40;
+		}
+		for (int i = 15*-4; i < 15*4; i+=15) {
+			Main.damageables.add(new spaceinvaders3d.Alien(
+					new Point3D(i,-5,farthestRowZ), 
+					new Point3D(i+10,5,farthestRowZ), 0 ) );
+			Main.damageables.add(new spaceinvaders3d.Alien(
+					new Point3D(i,-5,farthestRowZ-10), 
+					new Point3D(i+10,5,farthestRowZ-10), 1) );
+			Main.damageables.add(new spaceinvaders3d.Alien(
+					new Point3D(i,-5,farthestRowZ-20), 
+					new Point3D(i+10,5,farthestRowZ-20), 2) );
+		}		
+	}
+	
+	public void createShields() {
+		for (int i=20*-4; i < 20*4; i+= 20) {
+			Main.damageables.add(new spaceinvaders3d.Shield(
+					new Point3D(i, -2, 50),
+					new Point3D(i+4, 2, 50)));		
+			Main.damageables.add(new spaceinvaders3d.Shield(
+					new Point3D(i, -2, 40),
+					new Point3D(i+4, 2, 40)));		
+			Main.damageables.add(new spaceinvaders3d.Shield(
+					new Point3D(i, -2, 30),
+					new Point3D(i+4, 2, 30)));			
+		}
+	}
+	
+	public int getLevel() {
+		return level;
+	}
+	
+	public void increaseLevel() {
+		level++;
+	}
+	
+	private int level = 1;
 }

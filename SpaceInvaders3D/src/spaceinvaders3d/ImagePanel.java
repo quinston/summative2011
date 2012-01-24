@@ -82,16 +82,36 @@ public class ImagePanel extends javax.swing.JPanel {
 					i.remove();
 				}
 			}
+			
+			synchronized (Main.damageables) {
+				try {
+					int population = 0;
+					for (Damageable d:Main.damageables) {
+						if (d.getClass().isAssignableFrom(
+								Class.forName("spaceinvaders3d.Alien"))) {
+							population++;
+						}
+					}
+					if (population <= 0) {
+						Main.frame.increaseLevel();
+						Main.frame.createAliens();
+					}
+				} catch (Exception e) {
+					System.out.println(e.toString());
+				}
+			}
 
 		}
 	}
 
 	@Override
 	public void paintComponent(Graphics g) {
+		
 
 		BufferedImage buffer = new BufferedImage(getWidth(), getHeight(),
 				BufferedImage.TYPE_4BYTE_ABGR);
 		Graphics2D g0 = buffer.createGraphics();
+		g0.setFont(normalFont);
 
 
 		super.paintComponent(g0); //paint background
@@ -116,28 +136,30 @@ public class ImagePanel extends javax.swing.JPanel {
 
 		}
 
+		if (Main.gameDone) {
+			g0.setColor(Color.BLACK);
+			g0.fillRect(0, 0, Main.frame.WIDTH, Main.frame.HEIGHT);
+			g0.setColor(Color.RED);
+			g0.setFont(gameOverFont);
+			g0.drawString("GAME OVER", 100, 100);
+		}
+
+		g0.setColor(Color.YELLOW);
+		//debugging purposes
+		//g.drawString(Integer.toString(Main.damageables.size()), 0, 50);
+		g0.drawString("LEVEL " + Main.frame.getLevel(), 0, 70);		
 
 
 		//blit the buffer
 		g.drawImage(buffer, 0, 0, null);
-		if (Main.gameDone) {
-			g.setColor(Color.BLACK);
-			g.fillRect(0, 0, Main.frame.WIDTH, Main.frame.HEIGHT);
-			g.setColor(Color.RED);
-			g.setFont(gameOverFont);
-			g.drawString("GAME OVER", 100, 100);
-			
 
-		}
-
-		g.setColor(Color.YELLOW);
-
-		g.drawString(Integer.toString(Main.damageables.size()), 0, 50);
 	}
 	
 	private final static Font gameOverFont = 
 			new Font("Courier New", Font.BOLD, 30);
-
+	private final static Font normalFont = 
+			new Font("Courier New", Font.BOLD, 18);
+	
 	/** This method is called from within the constructor to
 	 * initialize the form.
 	 * WARNING: Do NOT modify this code. The content of this method is

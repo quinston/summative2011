@@ -21,7 +21,7 @@ public class Main {
 
     public static GameFrame frame = new GameFrame();     
     public static Camera camera = new Camera();
-    public static Ship player = new Ship(new Point3D(-10, -10, 0), new Point3D(10, 10, 0));
+    public static Ship player = new Ship(new Point3D(-10, -10, 10), new Point3D(10, 10, 10));
 	public static ArrayList<spaceinvaders3d.Damageable> damageables = new ArrayList<spaceinvaders3d.Damageable>();
 
     public static boolean gameDone = false;
@@ -31,17 +31,17 @@ public class Main {
 
     
     public static void main(String[] args) {
+
+		
         frame.setVisible(true);
         camera.position.x = 0;
         camera.position.y = 0;
         camera.position.z = 0;
         // TODO code application logic here    
 		
-		for (int i = 15*-4; i < 15*4; i+=15) {
-			damageables.add(new spaceinvaders3d.Alien(new Point3D(i,-5,230), new Point3D(i+10,5,230), 0 ) );
-			damageables.add(new spaceinvaders3d.Alien(new Point3D(i,-5,220), new Point3D(i+10,5,220), 1) );
-			damageables.add(new spaceinvaders3d.Alien(new Point3D(i,-5,210), new Point3D(i+10,5,210), 2) );
-		}
+		frame.createAliens();
+		frame.createShields();
+		
 		damageables.add(player);
                 frame.addKeyListener(frame);
                 while(true){

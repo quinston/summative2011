@@ -30,11 +30,29 @@ public class Utility {
 			spaceinvaders3d.Point3D lc1, 
 			spaceinvaders3d.Point3D uc2, 
 			spaceinvaders3d.Point3D lc2) {
-		if ((uc1.x >= uc2.x) && (uc1.x <= lc2.x) && 
-				(uc1.y >= uc2.y) && (uc1.y <= lc2.y) &&
-				(uc1.z >= uc2.z) && (uc1.z <= lc2.z)) { 
-        			return true;
+		
+		float[][] corners = {
+				{uc1.x, uc1.y, uc1.z},
+				{lc1.x, uc1.y, uc1.z},
+				{uc1.x, lc1.y, uc1.z},
+				{lc1.x, lc1.y, uc1.z},
+				{uc1.x, uc1.y, lc1.z},
+				{lc1.x, uc1.y, lc1.z},
+				{uc1.x, lc1.y, lc1.z},
+				{lc1.x, lc1.y, lc1.z},
+			};
+		
+		for (int i=0; i<corners.length; i++) {
+			float a = corners[i][0];
+			float b = corners[i][1];
+			float c= corners[i][2];
+			if ((a >= uc2.x) && (a <= lc2.x) && 
+					(b >= uc2.y) && (b <= lc2.y) &&
+					(c >= uc2.z) && (c <= lc2.z)) {
+				return true;
+			}			
 		}
+
 		return false;
 	}
 }

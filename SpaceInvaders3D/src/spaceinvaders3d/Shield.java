@@ -53,16 +53,18 @@ public class Shield implements Damageable{
     private static Color niceBlue = new Color(0, 0x66, 0xFF, 128);
     @Override
     public void cycle(int cycleNumber) {
-        throw new UnsupportedOperationException("Not supported yet.");
+		return;
+        //lolololol
+		//throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
     public void onCollision(Damageable d) {	
 		try {
-			if(d.getClass().isAssignableFrom( Class.forName("Alien") )) {
+			if(d.getClass().isAssignableFrom( Class.forName("spaceinvaders3d.Alien") )) {
 	            hp = 0;
 	        }
-	        else if(d.getClass().isAssignableFrom( Class.forName("Bullet") )){
+	        else if(d.getClass().isAssignableFrom( Class.forName("spaceinvaders3d.Bullet") )){
 	            hp = 0;
 	            d.takeDamage(1);
 			}			

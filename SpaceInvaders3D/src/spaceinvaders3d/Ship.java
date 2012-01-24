@@ -40,7 +40,7 @@ public class Ship implements Damageable {
 	@Override
 	public void paintSelf(Graphics2D g) {
 		g.setColor(Color.GREEN);
-		g.drawString(hp + " HP", 10,10);
+		g.drawString(hp + " HP", 10,30);
 		
 		/*
 		g.setColor(Color.RED);
@@ -50,7 +50,7 @@ public class Ship implements Damageable {
 		int h = lowerCorner.convertTo2D().y - upperCorner.convertTo2D().y;
 		g.drawRect(x, y, w, h);
 		System.out.println(x + " " + y + " " + w + " " + h);
-		 */
+		*/
 	}
 
 	
@@ -108,11 +108,10 @@ public class Ship implements Damageable {
 
 	public void onCollision(Damageable d) {
 
-
 	}
 
 	private int hp = 3;
-	private final int speed = 5;
+	private final int speed = 2;
 	private int fireDelay = 0;
 	private final int maxFireDelay = 20;
 }
