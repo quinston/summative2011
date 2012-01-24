@@ -13,10 +13,8 @@ import java.util.GregorianCalendar;
 import java.util.Random;
 
 public class Alien implements Damageable {
-    private int i = 0; //for debugging purposes???
-	
 
-    
+	private int i = 0; //for debugging purposes???
 	public static BufferedImage[][] alienSprites = {
 		{
 			Utility.loadImage("alien1-1.png"),
@@ -33,11 +31,11 @@ public class Alien implements Damageable {
 	};
 
 	public Alien(Point3D uc, Point3D lc, int s) {
-		upperCorner  = initialUpperCorner = uc;
+		upperCorner = initialUpperCorner = uc;
 		lowerCorner = initialLowerCorner = lc;
 		species = s;
 	}
-	
+
 	protected void finalize() {
 	}
 
@@ -69,53 +67,54 @@ public class Alien implements Damageable {
 		g.drawImage(sprite, (int) upperCorner2D.getX(), (int) upperCorner2D.getY(),
 				(int) size.getX(), (int) size.getY(), null);
 		g.setColor(Color.red);
-                //g.drawString(upperCorner.x+", "+upperCorner.y+", "+ upperCorner.z, 100, 100+species*10);
+		//g.drawString(upperCorner.x+", "+upperCorner.y+", "+ upperCorner.z, 100, 100+species*10);
 		//g.drawString("" + upperCorner2D.getX() + " " + upperCorner2D.getY()
-				//+ " " + size.getX() + " " + size.getY(), 10, upperCorner2D.y );
+		//+ " " + size.getX() + " " + size.getY(), 10, upperCorner2D.y );
 	}
-	
+
 	@Override
 	public void cycle(int cycleNumber) {
 		if (r.nextInt(3600) == 0) {
 			shoot();
 		}
-		if (cycleNumber % 3 ==0)
+		if (cycleNumber % 3 == 0) {
 			move(cycleNumber);
-                if(upperCorner.z<=0){
-                    Main.gameDone = true;
-                }
+		}
+		if (upperCorner.z <= 0) {
+			Main.gameDone = true;
+		}
 	}
 
 	public void shoot() {
 //if (true) return;
 		Bullet b = new Bullet(
-				new Point3D( (upperCorner.x+lowerCorner.x)/2-2, (upperCorner.y + lowerCorner.y)/2-2, (upperCorner.z+lowerCorner.z)/2-2), 
-				new Point3D( (upperCorner.x + lowerCorner.x)/2 +2, (upperCorner.y+lowerCorner.y)/2+2, (upperCorner.z + lowerCorner.z)/2-2),
-				new Point3D(0, 0, (float)-0.5 ));
+				new Point3D((upperCorner.x + lowerCorner.x) / 2 - 2, (upperCorner.y + lowerCorner.y) / 2 - 2, (upperCorner.z + lowerCorner.z) / 2 - 2),
+				new Point3D((upperCorner.x + lowerCorner.x) / 2 + 2, (upperCorner.y + lowerCorner.y) / 2 + 2, (upperCorner.z + lowerCorner.z) / 2 - 2),
+				new Point3D(0, 0, (float) -0.5));
 		b.owner = this;
-                Main.damageableBay.add(b);
-		
-				//System.out.println("Enemy bullet!");
+		Main.damageableBay.add(b);
+
+		//System.out.println("Enemy bullet!");
 	}
 
 	public void move(int cycleNumber) {
- 
+
 		//Input to sine called x for lack of better name
-		double x = cycleNumber /30. * Math.PI ;
-		
+		double x = cycleNumber / 30. * Math.PI;
+
 		//stuff to slow it down.
-		
-		upperCorner.x = initialUpperCorner.x 
-				+ (float) ( 1* Math.sin(x) );
+
+		upperCorner.x = initialUpperCorner.x
+				+ (float) (1 * Math.sin(x));
 		//upperCorner.y += Math.round(0.5 * Math.sin(x));
 		//upperCorner.z += Math.round(0.5 * Math.sin(x));	
-		
-		lowerCorner.x = initialLowerCorner.x 
-				+ (float)( 1* Math.sin(x) );
+
+		lowerCorner.x = initialLowerCorner.x
+				+ (float) (1 * Math.sin(x));
 		//lowerCorner.y += Math.round(0.5 * Math.sin(x));		
 		//lowerCorner.z += Math.round(0.5 * Math.sin(x));
-        upperCorner.z-=0.1;
-        lowerCorner.z-=0.1;
+		upperCorner.z -= 0.1;
+		lowerCorner.z -= 0.1;
 
 	}
 
@@ -130,23 +129,14 @@ public class Alien implements Damageable {
 	}
 
 	public void onCollision(Damageable d) {
-
-
 	}
-
-
 	private int hp = 1;
-	private Point3D upperCorner, lowerCorner, 
+	private Point3D upperCorner, lowerCorner,
 			initialUpperCorner, initialLowerCorner;
-	
 	//we need this so that the amount the aliens move is the same every run
 	//subtract this from any timekeeping manoeuvres that depend on seconds.
-	private final int clockOffset = new GregorianCalendar()
-			.get(GregorianCalendar.SECOND);
-			
+	private final int clockOffset = new GregorianCalendar().get(GregorianCalendar.SECOND);
 	private int species; // Type 1 has alienSprite1a, b; Type 2 has alienSprite2a etc.
 	private final int spriteChangeDelay = 150;
-	
-	
 	private Random r = new Random();
 }

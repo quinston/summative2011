@@ -48,22 +48,22 @@ public class ImagePanel extends javax.swing.JPanel {
 			synchronized (Main.damageables) {
 				for (spaceinvaders3d.Damageable d : Main.damageables) {
 					/*assert(d.getUpperCorner().x < d.getLowerCorner().x
-							&& d.getUpperCorner().y < d.getLowerCorner().y
-							&& d.getUpperCorner().z < d.getLowerCorner().z);*/
+					&& d.getUpperCorner().y < d.getLowerCorner().y
+					&& d.getUpperCorner().z < d.getLowerCorner().z);*/
 					if (d.getHP() > 0) {
 						d.cycle(new GregorianCalendar().get(GregorianCalendar.MILLISECOND) / 17);
 						for (spaceinvaders3d.Damageable e : Main.damageables) {
-							if (d==e || 
-									!Utility.isIntersecting(d.getUpperCorner(), 
-											d.getLowerCorner(), 
-											e.getUpperCorner(), 
-											e.getLowerCorner()) ||
-									e.getHP() <= 0) {
+							if (d == e
+									|| !Utility.isIntersecting(d.getUpperCorner(),
+									d.getLowerCorner(),
+									e.getUpperCorner(),
+									e.getLowerCorner())
+									|| e.getHP() <= 0) {
 								continue;
 							}
-	    	                d.onCollision(e);
+							d.onCollision(e);
 							e.onCollision(d);
-		                }
+						}
 					}
 				}
 				for (spaceinvaders3d.Damageable d : Main.damageableBay) {
@@ -82,11 +82,11 @@ public class ImagePanel extends javax.swing.JPanel {
 					i.remove();
 				}
 			}
-			
+
 			synchronized (Main.damageables) {
 				try {
 					int population = 0;
-					for (Damageable d:Main.damageables) {
+					for (Damageable d : Main.damageables) {
 						if (d.getClass().isAssignableFrom(
 								Class.forName("spaceinvaders3d.Alien"))) {
 							population++;
@@ -106,7 +106,7 @@ public class ImagePanel extends javax.swing.JPanel {
 
 	@Override
 	public void paintComponent(Graphics g) {
-		
+
 
 		BufferedImage buffer = new BufferedImage(getWidth(), getHeight(),
 				BufferedImage.TYPE_4BYTE_ABGR);
@@ -119,7 +119,7 @@ public class ImagePanel extends javax.swing.JPanel {
 			synchronized (Main.damageables) {
 				for (spaceinvaders3d.Damageable d : Main.damageables) {
 					//do not draw if dead or behind the camera
-					if (d.getHP() > 0 && d.getUpperCorner().z > -0 ) {
+					if (d.getHP() > 0 && d.getUpperCorner().z > -0) {
 						d.paintSelf((Graphics2D) g0);
 					}
 				}
@@ -147,19 +147,18 @@ public class ImagePanel extends javax.swing.JPanel {
 		g0.setColor(Color.YELLOW);
 		//debugging purposes
 		//g.drawString(Integer.toString(Main.damageables.size()), 0, 50);
-		g0.drawString("LEVEL " + Main.frame.getLevel(), 0, 70);		
+		g0.drawString("LEVEL " + Main.frame.getLevel(), 0, 70);
 
 
 		//blit the buffer
 		g.drawImage(buffer, 0, 0, null);
 
 	}
-	
-	private final static Font gameOverFont = 
+	private final static Font gameOverFont =
 			new Font("Courier New", Font.BOLD, 30);
-	private final static Font normalFont = 
+	private final static Font normalFont =
 			new Font("Courier New", Font.BOLD, 18);
-	
+
 	/** This method is called from within the constructor to
 	 * initialize the form.
 	 * WARNING: Do NOT modify this code. The content of this method is
