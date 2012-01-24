@@ -4,17 +4,24 @@ import javax.imageio.ImageIO;
 import java.io.File;
 import java.awt.image.BufferedImage;
 import javax.imageio.IIOException;
+import java.io.InputStream;
 
 public class Utility {
 
 	public static String workingDirectory = new Utility().getClass().getResource("Utility.class").toString().replace("Utility.class", "").replaceAll("file:", "");
 
+
 	public static BufferedImage loadImage(String filename) {
-		String fullFilename = workingDirectory + filename;
+		//String fullFilename = workingDirectory + filename;
+		//String fullFilename =  new Utility().getClass().getResource(filename).toString().replaceAll("file:","");
+		//InputStream is = Utility.class.getResourceAsStream(filename);
+		java.net.URL url = Utility.class.getResource( filename);
+		//assert(is!=null);
+
 		//System.out.println(fullFilename);
 		try {
-			System.out.println(fullFilename);
-			return ImageIO.read(new File(fullFilename));
+			System.out.println( url.toString() );
+			return ImageIO.read( url );
 		} catch (Exception e) {
 			System.out.println(e.toString());
 		}
