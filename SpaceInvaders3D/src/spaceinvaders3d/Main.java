@@ -20,7 +20,7 @@ public class Main {
 	 */
 	public static GameFrame frame = new GameFrame();
 	public static Camera camera = new Camera();
-	public static Ship player = new Ship(new Point3D(-50, -50, 0), new Point3D(50, 50, 0));
+	public static Ship player = new Ship(new Point3D(-5, -05, 0), new Point3D(5, 5, 1));
 	public static ArrayList<spaceinvaders3d.Damageable> damageables = new ArrayList<spaceinvaders3d.Damageable>();
 	public static boolean gameDone = false;
 	//add to the bay before adding to damageables to avoid concurrentmodificationexception

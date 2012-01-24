@@ -54,11 +54,16 @@ public class ImagePanel extends javax.swing.JPanel {
 						d.cycle(new GregorianCalendar().get(GregorianCalendar.MILLISECOND) / 17);
 						for (spaceinvaders3d.Damageable e : Main.damageables) {
 							if (d == e
-									|| !Utility.isIntersecting(d.getUpperCorner(),
+									|| !(Utility.isIntersecting(d.getUpperCorner(),
 									d.getLowerCorner(),
 									e.getUpperCorner(),
 									e.getLowerCorner())
-									|| e.getHP() <= 0) {
+
+									|| Utility.isIntersecting(e.getUpperCorner(),
+									e.getLowerCorner(),
+									d.getUpperCorner(),
+									d.getLowerCorner()) )
+									|| e.getHP() <= 0 || d.getHP() <= 0 ) {
 								continue;
 							}
 							d.onCollision(e);
@@ -69,6 +74,12 @@ public class ImagePanel extends javax.swing.JPanel {
 				for (spaceinvaders3d.Damageable d : Main.damageableBay) {
 					Main.damageables.add(d);
 				}
+				for (ListIterator<Damageable> i = Main.damageables.listIterator(); i.hasNext();) {
+					if (i.next().getHP() == 0) {
+						i.remove();
+	
+					}
+			}
 			}
 
 			Main.damageableBay.clear();
@@ -77,11 +88,7 @@ public class ImagePanel extends javax.swing.JPanel {
 				Main.gameDone = true;
 			}
 
-			for (ListIterator<Damageable> i = Main.damageables.listIterator(); i.hasNext();) {
-				if (i.next().getHP() == 0) {
-					i.remove();
-				}
-			}
+
 
 			synchronized (Main.damageables) {
 				try {

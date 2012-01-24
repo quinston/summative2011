@@ -169,22 +169,22 @@ public class GameFrame extends javax.swing.JFrame implements KeyListener {
 			for (int i = 20 * -4; i < 20 * 4; i += 20) {
 				Main.damageables.add(new spaceinvaders3d.Shield(
 						new Point3D(i, -2, 50),
-						new Point3D(i + 4, 2, 50)));
+						new Point3D(i + 4, 2, 51)));
 				Main.damageables.add(new spaceinvaders3d.Shield(
 						new Point3D(i + 4, -2, 50),
-						new Point3D(i + 8, 2, 50)));
+						new Point3D(i + 8, 2, 51)));
 				Main.damageables.add(new spaceinvaders3d.Shield(
 						new Point3D(i, -2, 40),
-						new Point3D(i + 4, 2, 40)));
+						new Point3D(i + 4, 2, 41)));
 				Main.damageables.add(new spaceinvaders3d.Shield(
 						new Point3D(i + 4, -2, 40),
-						new Point3D(i + 8, 2, 40)));
+						new Point3D(i + 8, 2, 41)));
 				Main.damageables.add(new spaceinvaders3d.Shield(
 						new Point3D(i, -2, 30),
-						new Point3D(i + 4, 2, 30)));
+						new Point3D(i + 4, 2, 31)));
 				Main.damageables.add(new spaceinvaders3d.Shield(
 						new Point3D(i + 4, -2, 30),
-						new Point3D(i + 8, 2, 30)));
+						new Point3D(i + 8, 2, 31)));
 			}
 
 		}

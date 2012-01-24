@@ -66,6 +66,8 @@ public class Ship implements Damageable {
 	public void cycle(int cycleNumber) {
 		fireDelay--;
 
+		//System.out.println("(" + upperCorner.x +","+upperCorner.y+","+upperCorner.z + ") -> (" + lowerCorner.x + "," + lowerCorner.y + "," + lowerCorner.z + ")");
+
 	}
 
 	public void shoot() {
