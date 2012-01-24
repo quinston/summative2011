@@ -32,8 +32,8 @@ public class Utility {
 			spaceinvaders3d.Point3D lc2) {
 		if ((uc1.x >= uc2.x) && (uc1.x <= lc2.x) && 
 				(uc1.y >= uc2.y) && (uc1.y <= lc2.y) &&
-				(uc1.z >= uc2.z) && (uc1.z <= lc2.z)) {
-			return true;
+				(uc1.z >= uc2.z) && (uc1.z <= lc2.z)) { 
+        			return true;
 		}
 		return false;
 	}

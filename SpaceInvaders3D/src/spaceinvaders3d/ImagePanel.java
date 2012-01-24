@@ -47,13 +47,22 @@ public class ImagePanel extends javax.swing.JPanel {
 		public void run() {
 			synchronized (Main.damageables) {
 				for (spaceinvaders3d.Damageable d : Main.damageables) {
+					/*assert(d.getUpperCorner().x < d.getLowerCorner().x
+							&& d.getUpperCorner().y < d.getLowerCorner().y
+							&& d.getUpperCorner().z < d.getLowerCorner().z);*/
 					if (d.getHP() > 0) {
 						d.cycle(new GregorianCalendar().get(GregorianCalendar.MILLISECOND) / 17);
 						for (spaceinvaders3d.Damageable e : Main.damageables) {
-							if (d==e) {
+							if (d==e || 
+									!Utility.isIntersecting(d.getUpperCorner(), 
+											d.getLowerCorner(), 
+											e.getUpperCorner(), 
+											e.getLowerCorner()) ||
+									e.getHP() <= 0) {
 								continue;
 							}
 	    	                d.onCollision(e);
+							e.onCollision(d);
 		                }
 					}
 				}
@@ -115,13 +124,19 @@ public class ImagePanel extends javax.swing.JPanel {
 			g.setColor(Color.BLACK);
 			g.fillRect(0, 0, Main.frame.WIDTH, Main.frame.HEIGHT);
 			g.setColor(Color.RED);
+			g.setFont(gameOverFont);
 			g.drawString("GAME OVER", 100, 100);
+			
+
 		}
 
 		g.setColor(Color.YELLOW);
 
 		g.drawString(Integer.toString(Main.damageables.size()), 0, 50);
 	}
+	
+	private final static Font gameOverFont = 
+			new Font("Courier New", Font.BOLD, 30);
 
 	/** This method is called from within the constructor to
 	 * initialize the form.

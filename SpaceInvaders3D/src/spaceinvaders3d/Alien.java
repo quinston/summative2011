@@ -71,12 +71,12 @@ public class Alien implements Damageable {
 	
 	@Override
 	public void cycle(int cycleNumber) {
-		if (r.nextInt(1000) == 0) {
+		if (r.nextInt(10000) == 0) {
 			shoot();
 		}
 		if (cycleNumber % 3 ==0)
 			move(cycleNumber);
-                if(upperCorner.z<=-30){
+                if(upperCorner.z<=0){
                     Main.gameDone = true;
                 }
 	}
@@ -86,11 +86,11 @@ public class Alien implements Damageable {
 		Bullet b = new Bullet(
 				new Point3D( (upperCorner.x+lowerCorner.x)/2-2, (upperCorner.y + lowerCorner.y)/2-2, (upperCorner.z+lowerCorner.z)/2-2), 
 				new Point3D( (upperCorner.x + lowerCorner.x)/2 +2, (upperCorner.y+lowerCorner.y)/2+2, (upperCorner.z + lowerCorner.z)/2-2),
-				new Point3D(0, 0, (float)-20 ));
+				new Point3D(0, 0, (float)-0.5 ));
 		b.owner = this;
                 Main.damageableBay.add(b);
 		
-				System.out.println("Enemy bullet!");
+				//System.out.println("Enemy bullet!");
 	}
 
 	public void move(int cycleNumber) {

@@ -57,14 +57,20 @@ public class Shield implements Damageable{
     }
 
     @Override
-    public void onCollision(Damageable d) {
-        if(d.getClass().isAssignableFrom(spaceinvaders3d.Alien)){
-            hp = 0;
-        }
-        else if(d.getClass().isAssignableFrom(spaceinvaders3d.Bullet)){
-            hp = 0;
-            d.takeDamage(1);
-        }
+    public void onCollision(Damageable d) {	
+		try {
+			if(d.getClass().isAssignableFrom( Class.forName("Alien") )) {
+	            hp = 0;
+	        }
+	        else if(d.getClass().isAssignableFrom( Class.forName("Bullet") )){
+	            hp = 0;
+	            d.takeDamage(1);
+			}			
+		} catch (ClassNotFoundException e) {
+			System.out.println(e.toString());
+		}
+
+		
     }
     public boolean checkCollision(Damageable d){
         return (Utility.isIntersecting(upperCorner, lowerCorner, d.getUpperCorner(), d.getLowerCorner() ) ) ;

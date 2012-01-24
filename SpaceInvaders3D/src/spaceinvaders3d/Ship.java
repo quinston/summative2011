@@ -40,7 +40,17 @@ public class Ship implements Damageable {
 	@Override
 	public void paintSelf(Graphics2D g) {
 		g.setColor(Color.GREEN);
-		g.drawString(hp + "", 10,10);
+		g.drawString(hp + " HP", 10,10);
+		
+		/*
+		g.setColor(Color.RED);
+		int x = upperCorner.convertTo2D().x;
+		int y = upperCorner.convertTo2D().y;
+		int w = lowerCorner.convertTo2D().x - upperCorner.convertTo2D().x;
+		int h = lowerCorner.convertTo2D().y - upperCorner.convertTo2D().y;
+		g.drawRect(x, y, w, h);
+		System.out.println(x + " " + y + " " + w + " " + h);
+		 */
 	}
 
 	
@@ -61,13 +71,13 @@ public class Ship implements Damageable {
  				new Point3D((upperCorner.x+lowerCorner.x)/2+5, 
  				(upperCorner.y+lowerCorner.y)/2+5, 
  				(upperCorner.z+lowerCorner.z)/2+5), 
- 				new Point3D(0, 0, (float) +10));
+ 				new Point3D(0, 0, (float) +2));
                 //System.out.println(upperCorner.x+", "
 				//		+upperCorner.y+", "+upperCorner.z);
                 //System.out.println(lowerCorner.x+", "
 				//		+lowerCorner.y+", "+lowerCorner.z);
 
-				System.out.println("Friendly bullet");
+				//System.out.println("Friendly bullet");
 		b.owner = this;
         Main.damageables.add(b);
 

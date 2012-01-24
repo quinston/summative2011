@@ -11,9 +11,10 @@ import java.awt.image.BufferedImage;
 public class Bullet implements Damageable {
 
     Point3D upperCorner, lowerCorner, direction;
-	int deathTimer = 200;
+	int deathTimer = 1200;
     public Damageable owner;
-    static BufferedImage self = Utility.loadImage("downFacingBullet.png");
+    static final BufferedImage self = Utility.loadImage("downFacingBullet.png");
+	
     public Bullet(Point3D UpperCorner, Point3D LowerCorner, Point3D movementDirection) {
         upperCorner = UpperCorner;
         lowerCorner = LowerCorner;
@@ -30,20 +31,16 @@ public class Bullet implements Damageable {
         lowerCorner.z += direction.z;
     }
 
-    public boolean checkCollision(Damageable d) {
-		return (Utility.isIntersecting(upperCorner, lowerCorner, d.getUpperCorner(), d.getLowerCorner() ) ) ;
-    }
 
     public void onCollision(Damageable d) {
 
         if (d == owner || d.getClass().isAssignableFrom(owner.getClass()) ) {
             return;
         } else {
-            if (checkCollision(d)) {
 				System.out.println("Collided with a: " + d.getClass().toString() + "while my owner is a: " + owner.getClass().toString() );
                 d.takeDamage(1);
                 System.out.println("HIT. d has " + d.getHP() + "HP");
-            }
+				hp = 0;
         }
     }
 
