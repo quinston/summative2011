@@ -113,8 +113,8 @@ public class Alien implements Damageable {
 				+ (float) (1 * Math.sin(x));
 		//lowerCorner.y += Math.round(0.5 * Math.sin(x));		
 		//lowerCorner.z += Math.round(0.5 * Math.sin(x));
-		upperCorner.z -= 0.1;
-		lowerCorner.z -= 0.1;
+		upperCorner.z -= 0.2;
+		lowerCorner.z -= 0.2;
 
 	}
 

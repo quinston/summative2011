@@ -12,6 +12,8 @@ public class Ship implements Damageable {
 
 	private Point3D upperCorner, lowerCorner;
 
+	private int injuryRedAlpha=0; //when hurt, paints the screen in red which decreases over time
+
 	@Override
 	public Point3D getUpperCorner() {
 		return upperCorner;
@@ -42,6 +44,23 @@ public class Ship implements Damageable {
 		g.setColor(Color.GREEN);
 		g.drawString(hp + " HP", 10, 30);
 
+		
+		
+		
+		/*g.setColor(Color.RED);
+		Point3D windowUpperCorner = new Point3D(upperCorner.x,upperCorner.y,2);
+		Point3D windowLowerCorner = new Point3D(lowerCorner.x,lowerCorner.y,2);
+		Point windowUpperCornerP = windowUpperCorner.convertTo2D();
+		Point windowLowerCornerP = windowLowerCorner.convertTo2D();
+		
+		System.out.println(String.format("(%d,%d) (%d,%d)", windowUpperCornerP.x, windowUpperCornerP.y, windowLowerCornerP.x, windowLowerCornerP.y);
+
+		g.drawRect(windowUpperCornerP.x, 
+				windowUpperCornerP.y,
+				windowLowerCornerP.x - windowUpperCornerP.y,
+				windowLowerCornerP.x - windowUpperCornerP.y);
+*/
+
 		/*
 		Point up = upperCorner.convertTo2D();
 		Point lp = lowerCorner.convertTo2D();
@@ -60,11 +79,19 @@ public class Ship implements Damageable {
 		g.drawRect(x, y, w, h);
 		System.out.println(x + " " + y + " " + w + " " + h);
 		 */
+
+
+		g.setColor(new Color(0xff, 0x33, 00, injuryRedAlpha) );
+		g.fillRect(0,0,Main.frame.imagePanel1.getWidth(),
+				Main.frame.imagePanel1.getHeight());
 	}
 
 	@Override
 	public void cycle(int cycleNumber) {
 		fireDelay--;
+		if (injuryRedAlpha > 0) {
+			injuryRedAlpha--;
+		}
 
 		//System.out.println("(" + upperCorner.x +","+upperCorner.y+","+upperCorner.z + ") -> (" + lowerCorner.x + "," + lowerCorner.y + "," + lowerCorner.z + ")");
 
@@ -122,6 +149,12 @@ public class Ship implements Damageable {
 	}
 
 	public void onCollision(Damageable d) {
+		if (d.getClass().isAssignableFrom( Bullet.class )) {
+			if ( ( (Bullet) d).owner != this) {
+
+				injuryRedAlpha+=80;
+			}
+		}
 	}
 	private int hp = 3;
 	private final int speed = 2;
