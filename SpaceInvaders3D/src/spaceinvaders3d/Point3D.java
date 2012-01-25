@@ -21,17 +21,22 @@ public class Point3D {
     }
     //converts 3d points to 2d points for painting
     public Point convertTo2D() {
-        //creates values that compare to teh view point
+        //creates values that compare to thh view point
         float dX = Main.camera.position.x - this.x;
         float dY = Main.camera.position.y - this.y;
         float dZ = Math.abs(Main.camera.position.z - this.z);
-
+        
+        //creates angles to compare the points to
         Main.camera.angleOfViewY = Main.camera.angleOfViewX * Main.frame.imagePanel1.getHeight() / Main.frame.imagePanel1.getWidth();
         Main.camera.angleOffsetY = (180 - Main.camera.angleOfViewY) / 2;
-
+        
+        //gets the angles from the point
+        //the x angle
         float Alpha = (float) (Math.atan2(dZ, dX) * (180 / Math.PI) - Main.camera.angleOffsetX);
+        //the y angle
         float Beta = (float) (Math.atan2(dZ, dY) * (180 / Math.PI) - Main.camera.angleOffsetY);
 
+        //the actual 2d point
         float X2D = (Alpha / Main.camera.angleOfViewX) * Main.frame.imagePanel1.getWidth();
         float Y2D = (Beta / Main.camera.angleOfViewY) * Main.frame.imagePanel1.getHeight();
 

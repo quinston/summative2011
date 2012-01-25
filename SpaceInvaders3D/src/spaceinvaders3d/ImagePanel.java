@@ -29,7 +29,9 @@ public class ImagePanel extends javax.swing.JPanel {
 	/** Creates new form ImagePanel */
 	public ImagePanel() {
 		initComponents();
+                //timer to paint the panel
 		new Timer().schedule(new ImagePanel.RepaintTask(), 0, 33); //begin immediately and periodically 33ms i.e. 30fps
+                //timer to make the game run
 		new Timer().schedule(new ImagePanel.CycleTask(), 0, 17); //cycle twice as fast as painting.
 	}
 
@@ -50,10 +52,13 @@ public class ImagePanel extends javax.swing.JPanel {
 					/*assert(d.getUpperCorner().x < d.getLowerCorner().x
 					&& d.getUpperCorner().y < d.getLowerCorner().y
 					&& d.getUpperCorner().z < d.getLowerCorner().z);*/
+                                    //if the damageable is still alive
 					if (d.getHP() > 0) {
+                                                //calls the cycle method in each of their classes
 						d.cycle(new GregorianCalendar().get(GregorianCalendar.MILLISECOND) / 17);
 						for (spaceinvaders3d.Damageable e : Main.damageables) {
-							if (d == e
+							//checks collision with every other damageable
+                                                        if (d == e
 									|| !(Utility.isIntersecting(d.getUpperCorner(),
 									d.getLowerCorner(),
 									e.getUpperCorner(),
@@ -66,30 +71,33 @@ public class ImagePanel extends javax.swing.JPanel {
 									|| e.getHP() <= 0 || d.getHP() <= 0 ) {
 								continue;
 							}
+                                                        //runs what happens if they collide from each class
 							d.onCollision(e);
 							e.onCollision(d);
 						}
 					}
 				}
 				for (spaceinvaders3d.Damageable d : Main.damageableBay) {
-					Main.damageables.add(d);
+					//adds new damageables, mainly bullets fired
+                                        Main.damageables.add(d);
 				}
 				for (ListIterator<Damageable> i = Main.damageables.listIterator(); i.hasNext();) {
-					if (i.next().getHP() == 0) {
+					//if something is dead, get rid of it
+                                        if (i.next().getHP() == 0) {
 						i.remove();
 	
 					}
 			}
 			}
-
+                        //get rid of new damageables waiting to be entered, they have been entered
 			Main.damageableBay.clear();
-
+                        //if your health is 0 or less, you lose
 			if (Main.player.getHP() <= 0) {
 				Main.gameDone = true;
 			}
 
 
-
+                        //if all the damageables that are not the player are dead, advance the level
 			synchronized (Main.damageables) {
 				try {
 					int population = 0;
@@ -114,7 +122,7 @@ public class ImagePanel extends javax.swing.JPanel {
 	@Override
 	public void paintComponent(Graphics g) {
 
-
+                //creates an image to draw stuff with
 		BufferedImage buffer = new BufferedImage(getWidth(), getHeight(),
 				BufferedImage.TYPE_4BYTE_ABGR);
 		Graphics2D g0 = buffer.createGraphics();
@@ -124,6 +132,7 @@ public class ImagePanel extends javax.swing.JPanel {
 		super.paintComponent(g0); //paint background
 		if (!Beans.isDesignTime() && !Main.gameDone) {
 			synchronized (Main.damageables) {
+                                //draws all damageables if the game is still running    
 				for (spaceinvaders3d.Damageable d : Main.damageables) {
 					//do not draw if dead or behind the camera
 					if (d.getHP() > 0 && d.getUpperCorner().z > -0) {
@@ -131,6 +140,7 @@ public class ImagePanel extends javax.swing.JPanel {
 					}
 				}
 			}
+                        //draws the player's health and level
 			Main.player.paintSelf(g0);
 			//CROSSHAIR!
 			g0.setColor(Color.GREEN);
@@ -142,7 +152,7 @@ public class ImagePanel extends javax.swing.JPanel {
 					imagePanel.getWidth() / 2 - 50, imagePanel.getHeight() / 2);
 
 		}
-
+                //if you lost, shows a game over screen
 		if (Main.gameDone) {
 			g0.setColor(Color.BLACK);
 			g0.fillRect(0, 0, Main.frame.WIDTH, Main.frame.HEIGHT);

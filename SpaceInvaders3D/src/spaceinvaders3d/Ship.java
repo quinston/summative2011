@@ -14,31 +14,36 @@ public class Ship implements Damageable {
 
 	private int injuryRedAlpha=0; //when hurt, paints the screen in red which decreases over time
 
+        //allows upperCorner to be checked out of this class
 	@Override
 	public Point3D getUpperCorner() {
 		return upperCorner;
 	}
 
+        //allows lowerCorner to be checked out of this class
 	@Override
 	public Point3D getLowerCorner() {
 		return lowerCorner;
 	}
 
+        //new ships take in a location and size
 	public Ship(Point3D UC, Point3D LC) {
 		upperCorner = UC;
 		lowerCorner = LC;
 	}
-
+        
+        //takes damage so you can die
 	@Override
 	public void takeDamage(int n) {
 		hp -= n;
 	}
-
+        
+        //allows health to be checked out of this class
 	@Override
 	public int getHP() {
 		return hp;
 	}
-
+        //paints your health, no picture because you can't see yourself
 	@Override
 	public void paintSelf(Graphics2D g) {
 		g.setColor(Color.GREEN);
@@ -86,9 +91,12 @@ public class Ship implements Damageable {
 				Main.frame.imagePanel1.getHeight());
 	}
 
+        //what is run when the timer ticks
 	@Override
 	public void cycle(int cycleNumber) {
+                //ticks down to next time you can fire
 		fireDelay--;
+                //ticks down to next time you can get hit
 		if (injuryRedAlpha > 0) {
 			injuryRedAlpha--;
 		}
@@ -96,13 +104,15 @@ public class Ship implements Damageable {
 		//System.out.println("(" + upperCorner.x +","+upperCorner.y+","+upperCorner.z + ") -> (" + lowerCorner.x + "," + lowerCorner.y + "," + lowerCorner.z + ")");
 
 	}
-
+        
+        //shoots bullets
 	public void shoot() {
+                //before anything else, make sure you can't fire too quickly
 		if (fireDelay > 0) {
 			return;
 
 		}
-
+                //creates the bullet to fly 
 		Bullet b = new Bullet(new Point3D((upperCorner.x + lowerCorner.x) / 2 - 5,
 				(upperCorner.y + lowerCorner.y) / 2 - 5,
 				(upperCorner.z + lowerCorner.z) / 2 - 5),
@@ -116,38 +126,45 @@ public class Ship implements Damageable {
 		//		+lowerCorner.y+", "+lowerCorner.z);
 
 		//System.out.println("Friendly bullet");
-		b.owner = this;
-		synchronized (Main.damageables) {
+		//sets the owner of the bullet to this ship so you can't hit yourself
+                b.owner = this;
+		//adds the bullet to the damageables array so it is handled
+                synchronized (Main.damageables) {
 			Main.damageables.add(b);
 		}
-
+                //sets the firing delay so you can't fire too often
 		fireDelay = maxFireDelay;
 	}
 
+        //moves the ship left, used when left is pressed
 	public void moveLeft() {
 		upperCorner.x -= speed;
 		lowerCorner.x -= speed;
 	}
 
+        //moves the ship right, used when right is pressed
 	public void moveRight() {
 		upperCorner.x += speed;
 		lowerCorner.x += speed;
 	}
 
+        //moves the ship upwards, used when up is pressed
 	public void moveUp() {
 		upperCorner.y -= speed;
 		lowerCorner.y -= speed;
 	}
-
+        
+        //moves the ship downwards, used when down is pressed
 	public void moveDown() {
 		upperCorner.y += speed;
 		lowerCorner.y += speed;
 	}
 
+        //checks collision with the method in utilty class
 	public boolean checkCollision(Damageable d) {
 		return (Utility.isIntersecting(upperCorner, lowerCorner, d.getUpperCorner(), d.getLowerCorner()));
 	}
-
+        //checks collision with bullets and acts
 	public void onCollision(Damageable d) {
 		if (d.getClass().isAssignableFrom( Bullet.class )) {
 			if ( ( (Bullet) d).owner != this) {
@@ -156,6 +173,7 @@ public class Ship implements Damageable {
 			}
 		}
 	}
+        //resets hp when you hit the bonus ship
         public void resetHP(){
             hp = 3;
         }
