@@ -21,6 +21,7 @@ public class Main {
 	public static GameFrame frame = new GameFrame();
 	public static Camera camera = new Camera();
 	public static Ship player = new Ship(new Point3D(-5, -05, 0), new Point3D(5, 5, 1));
+        public static BonusShip bonus = new BonusShip(new Point3D(-90, -5, 250), new Point3D(-85, 5, 250));
 	public static ArrayList<spaceinvaders3d.Damageable> damageables = new ArrayList<spaceinvaders3d.Damageable>();
 	public static boolean gameDone = false;
 	//add to the bay before adding to damageables to avoid concurrentmodificationexception
@@ -39,6 +40,8 @@ public class Main {
 		frame.createShields();
 
 		damageables.add(player);
+                damageables.add(bonus);
+                
 		frame.addKeyListener(frame);
 		while (true) {
 

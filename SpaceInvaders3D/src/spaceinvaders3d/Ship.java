@@ -156,6 +156,9 @@ public class Ship implements Damageable {
 			}
 		}
 	}
+        public void resetHP(){
+            hp = 3;
+        }
 	private int hp = 3;
 	private final int speed = 2;
 	private int fireDelay = 0;
