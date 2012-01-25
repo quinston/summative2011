@@ -28,13 +28,13 @@ public class BonusShip implements Damageable{
     public void move(){
         if(movingRight){
             //moves right
-            upperCorner.x+=10;
-            lowerCorner.x+=10;
+            upperCorner.x+=2;
+            lowerCorner.x+=2;
         }
         else{
             //moves left
-            upperCorner.x-=10;
-            lowerCorner.x-=10;
+            upperCorner.x-=2;
+            lowerCorner.x-=2;
         }
         if(goneTime<=0){
             //brings the ship back to reasonable depth
@@ -83,7 +83,7 @@ public class BonusShip implements Damageable{
     @Override
     public void cycle(int cycleNumber) {
         move();
-        if(upperCorner.x>=-100||lowerCorner.x<=100){
+        if(upperCorner.x<=-100||lowerCorner.x>=100){
             changeDirection();
         }
         goneTime--;
