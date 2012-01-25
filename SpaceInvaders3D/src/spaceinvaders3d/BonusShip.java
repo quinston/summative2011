@@ -94,7 +94,7 @@ public class BonusShip implements Damageable{
         Main.player.resetHP();
         upperCorner.z=9000;
         lowerCorner.z=9000;
-        goneTime = 50;
+        goneTime = 500;
     }
     //top right and bottom left corners
     private Point3D upperCorner, lowerCorner;

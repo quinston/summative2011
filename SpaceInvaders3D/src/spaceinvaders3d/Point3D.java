@@ -13,15 +13,15 @@ import java.awt.Point;
 public class Point3D {
 
     public float x, y, z;
-
+    //takes in x, y, z coordinates and stores them
     public Point3D(float x, float y, float z) {
         this.x = x;
         this.y = y;
         this.z = z;
     }
-
+    //converts 3d points to 2d points for painting
     public Point convertTo2D() {
-
+        //creates values that compare to teh view point
         float dX = Main.camera.position.x - this.x;
         float dY = Main.camera.position.y - this.y;
         float dZ = Math.abs(Main.camera.position.z - this.z);
