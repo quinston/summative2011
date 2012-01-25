@@ -83,7 +83,7 @@ public class BonusShip implements Damageable{
     @Override
     public void cycle(int cycleNumber) {
         move();
-        if(upperCorner.x>=100||lowerCorner.x<=100){
+        if(upperCorner.x>=-100||lowerCorner.x<=100){
             changeDirection();
         }
         goneTime--;
