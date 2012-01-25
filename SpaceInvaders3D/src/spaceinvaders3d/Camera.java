@@ -16,10 +16,12 @@ public class Camera {
     
     //width of the cone vision
     int angleOfViewX = 90;
+    //angle seen in first quadrant(front top right)
     float angleOffsetX = (180 - angleOfViewX) / 2;
 
     //cone vision width multiplied by the height:width ratio of the ImagePanel
     int angleOfViewY = angleOfViewX*Main.frame.imagePanel1.getHeight()/Main.frame.imagePanel1.getWidth();
+    //angle seen in first quadrant(front top right)
     float angleOffsetY = (180 - angleOfViewY) / 2;
 
     public Camera() {
