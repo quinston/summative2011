@@ -18,6 +18,7 @@ import java.awt.Point;
  */
 public class Shield implements Damageable {
 
+	/* normal constructor */
 	public Shield(Point3D uc, Point3D lc) {
 		upperCorner = uc;
 		lowerCorner = lc;
@@ -45,6 +46,9 @@ public class Shield implements Damageable {
 
 	@Override
 	public void paintSelf(Graphics2D g) {
+		/*
+		looks like a translucent sheet with a hollow square inside it.
+		*/
 		g.setColor(niceBlue);
 		Point uc = upperCorner.convertTo2D();
 		Point lc = lowerCorner.convertTo2D();
@@ -56,13 +60,19 @@ public class Shield implements Damageable {
 
 	@Override
 	public void cycle(int cycleNumber) {
-		return;
+		//return;
 		//lolololol
 		//throw new UnsupportedOperationException("Not supported yet.");
 	}
 
 	@Override
 	public void onCollision(Damageable d) {
+		
+		/*
+		aliens will devour shields without stopping.
+		bullets will destory shields but be destroyed themselves in the process
+		*/
+		
 		try {
 			if (d.getClass().isAssignableFrom(Class.forName("spaceinvaders3d.Alien"))) {
 				hp = 0;
@@ -76,6 +86,9 @@ public class Shield implements Damageable {
 
 
 	}
+	
+	/* just a wrapper for Utility.isIntersecting. finds all the corners
+	of the passed Damageable for use in Utility.isIntersecting */
 
 	public boolean checkCollision(Damageable d) {
 		return (Utility.isIntersecting(upperCorner, lowerCorner, d.getUpperCorner(), d.getLowerCorner()));

@@ -27,7 +27,7 @@ public class Utility {
 		}
 		return null;
 	}
-        //checks if any corners from the first set are within the second set of corners
+        //checks if any corners from the first set are within the second set of corners and vice versa
 	public static boolean isIntersecting(spaceinvaders3d.Point3D uc1,
 			spaceinvaders3d.Point3D lc1,
 			spaceinvaders3d.Point3D uc2,

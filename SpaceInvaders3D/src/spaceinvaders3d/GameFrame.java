@@ -96,6 +96,7 @@ public class GameFrame extends javax.swing.JFrame implements KeyListener {
 		java.awt.EventQueue.invokeLater(new Runnable() {
 
 			public void run() {
+				//create the JFrame and make it visible
 				GameFrame f = new GameFrame();
 				f.setVisible(true);
 				//f.imagePanel1.addKeyListener(f.imagePanel1);
@@ -108,11 +109,17 @@ public class GameFrame extends javax.swing.JFrame implements KeyListener {
     public spaceinvaders3d.ImagePanel imagePanel1;
     // End of variables declaration//GEN-END:variables
 
+    
+    //key handling things
 	@Override
 	public void keyTyped(KeyEvent e) {
 		//System.out.println("Typed " + e.getKeyChar());
 	}
 
+	/*movement handled here.
+	if up or down is pressed, the camera moves on axis z.
+	if left or right is stricken, the camera moves on axis x.
+	*/
 	@Override
 	public void keyPressed(KeyEvent e) {
 		int keyCode = e.getKeyCode();
@@ -129,6 +136,8 @@ public class GameFrame extends javax.swing.JFrame implements KeyListener {
 		//System.out.println("Pressed " + e.getKeyChar());
 	}
 
+	
+	/*have the ship shoot a bullet on the release of spacebar */
 	@Override
 	public void keyReleased(KeyEvent e) {
 		int keyCode = e.getKeyCode();
@@ -138,6 +147,7 @@ public class GameFrame extends javax.swing.JFrame implements KeyListener {
 		//System.out.println("Released " + e.getKeyChar());
 	}
 
+	/* create a wave of aliens dependent on the current level */
 	public void createAliens() {
 		// larger z is farther from camera
 		int farthestRowZ = 230;
@@ -163,6 +173,9 @@ public class GameFrame extends javax.swing.JFrame implements KeyListener {
 		}
 	}
 
+	/*
+	create layers of shields
+	*/
 	public void createShields() {
 		synchronized (Main.damageables) {
 
@@ -197,5 +210,7 @@ public class GameFrame extends javax.swing.JFrame implements KeyListener {
 	public void increaseLevel() {
 		level++;
 	}
+	
+	/* the level of the game. difficulty increases with level */
 	private int level = 0;
 }
